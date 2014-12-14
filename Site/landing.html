@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Group 10</title>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+<link rel="icon" type="type/png" href="img/favicon_3.png"/>
+
+<script>
+function password() {
+	var testV = 1;
+	var pass1 = prompt('Enter code','');
+	while(testV < 3) {
+		if( !pass1 )
+			history.go(-1);
+		if( pass1 == "3860" ) {
+			window.location.href = "index.html";
+			break;
+		}
+		testV += 1;
+		var pass1 = prompt('Incorrect access code.','Password');
+	}
+	if(pass1 != "3860" && testV == 3)
+		history.go(-1);
+	return " ";
+}
+</script>
+</head>
+
+<body>
+<div class="wrapper">
+	<div class="header">
+	</div>
+	<div class="main">
+		<h1>Welcome to Group 10's project site.</h1>
+		<p class="body">Due to the contents of the site, access is restricted to the general public. Please enter the access code to view content.</p>
+		<br>
+		<center>
+			<form>
+				<input type="text" placeholder="Enter Access Code" onClick="password()">
+			</form>
+		</center>
+		<br>
+		<p class="body" style="font-style: italic;">NOTE: The code is the same as the access code for the CS labs 4.06 and 1.21.</p>
+	</div>
+	<div class="footer">
+		<p class="body" style="font-size: 10px;"> <span class="highlight" style="font-size: 10px;">Copyright (c) 2014 </span> | Victoria Koh, Johan Mouritsen, Gulliver Anslow-Johnson</p>
+	</div>
+</div>
+
+
+</body>
+</html>
