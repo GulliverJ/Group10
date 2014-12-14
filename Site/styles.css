@@ -242,6 +242,7 @@ a.disabled {
 li.bulleted {
 	display: list-item;
 	list-style-type: square;
+	color: #fff;
 }
 
 li.inactive {
@@ -255,3 +256,38 @@ li.normal:before {
 	padding-right: 6px;
 	color: #f60;
 }
+
+table { 
+	color: #ffffff;
+	font-family: Helvetica, Arial, sans-serif; 
+	border-collapse: 
+	collapse; border-spacing: 0; 
+}
+
+td, th { 
+	border: 1px solid transparent; 
+	height: 30px; 
+	transition: all 0.3s;  
+}
+
+th {
+	background: #191919;  /* Darken header a bit */
+	font-weight: bold;
+}
+
+td {
+	background: #333333;
+	text-align: center;
+}
+
+ 
+tr:nth-child(even) td { background: #4D4D4D; }   
+ 
+tr:nth-child(odd) td { background: #808080; }  
+
+tr td:hover { background: #FF9900; color: #333; } 
+
+
+
+
+

@@ -42,14 +42,269 @@
 		<div class="main">
 			<div class="content">
 				<img src="img/requirements.png"/>
-				<p>This section will contain the requirements list.</p>
-				<p>Assigned to: <strong>Victora/Gulliver</strong></p>
-			</div>
+				<p><h1>Overview</h1></p>
+	
+			<p>
+				A set of requirements for this project has been derived and tabulated below. These have been labelled according to type: hardware requirements, software requirements, G/UI requirements and assigned priorities.  
+			</p>
+			<p>
+				The requirements listed aim to highlight the full scope of the project intended for Orange. At present, further details, such as the sub-set of the scope we will be concentrating on and such the deliverables we will be providing and the timeline for them have yet to be been finalised as we look into what is realistically achievable across this winter break. 
+			</p>
+			<p>
+				All parties involved are aware of this situation, and the team is expected to provide a timeline of deliverables before the meeting with the client planned in the week of January 12th - 16th 2015 to discuss and come to a conclusion on this.
+			</p>
+			<p>
+				The system to be designed will consist of two stages; an initial state involving the testing of potential architectures of the system and later the development of an implementation to demonstrate how it would work.
+			</p>
+				
+			<p><h1> General system requirements </h1></p>
+			
+			<p> 
+				<table> 
+					<tr><th>ID</th> 
+						<th> Requirement </th>
+						<th> Type </th>
+						<th> Priority </th> 	
+					</tr>
+					<tr><td> 1 </td>
+						<td> The system must provide an open network over which integration of new sensors/ hardware can occur seamlessly.</td>
+						<td> Software/ Hardware</td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 2 </td>
+						<td> Enable and support the connection to multiple different types of sensors in the environment.</td>
+						<td> Software/ Hardware</td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 3 </td>
+						<td> Enable the gathering of raw data from sensors wirelessly (e.g. across Bluetooth/ Wifi/ Zigbee or 3G/4G) in real-time</td>
+						<td> Software/ Hardware</td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 4 </td>
+						<td> Allow for any type of digital sensor to transmit readings to a central database hosted on the cloud</td>
+						<td> Software/ Hardware</td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 5 </td>
+						<td> The database must hold all relevant data, including metadata about the sensors (e.g. position, ID) </td>
+						<td> Software </td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 6 </td>
+						<td> Enable detection of when a sensor last transmitted/ uploaded data to the database, access it remotely and from this work out if it is working/ faulty.</td>
+						<td> Software/ Hardware</td>
+						<td> Must </td>
+					</tr>	
+					<tr><td> 7 </td>
+						<td> Process the database&#39s meta/raw data using analytics/ algorithms which then feedback to it.</td>
+						<td> Software </td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 8 </td>
+						<td> Offer an API for developers to access the database.</td>
+						<td> Software/ UI</td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 9 </td>
+						<td> Provide straightforward API functionality, to the extent of enabling users to build their own API or software &#39layer&#39 upon</td>
+						<td> Software/ UI</td>
+						<td> Should </td>
+					</tr>
+					<tr><td> 10 </td>
+						<td> Enable the integration of open data sources into its platform.</td>
+						<td> Software</td>
+						<td> Should </td>
+					</tr>
+					<tr><td> 11 </td>
+						<td> Provide an easy-to-use interface for developers to add/ install their own hardware (sensors) to.</td>
+						<td> Software/ GUI</td>
+						<td> Should </td>
+					</tr>
+					<tr><td> 12 </td>
+						<td> The platform &#39by developers for developers&#39 should have the database integrated into it.</td>
+						<td> Software/ GUI</td>
+						<td> Should </td>
+					</tr>
+					<tr><td> 13 </td>
+						<td> The platform should enable continued management of said sensors. </td>
+						<td> Software/ GUI</td>
+						<td> Should </td>
+					</tr>
+				</table>	
+			</p>
+		<br>
+			<p><h1> Use case specific requirements </h1></p>
+			<p> 
+				<table> 
+					<tr><th>ID</th> 
+						<th> Requirement </th>
+						<th> Type </th>
+						<th> Priority </th> 	
+					</tr>
+					<tr><td> 1 </td>
+						<td> The supporting architecture must be designed so as to be cost effective and robust.</td>
+						<td> Software/ Hardware</td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 2 </td>
+						<td> Reliably detect the presence of a vehicle in on-street parking under a range of conditions mimicking what might be a reality when in-use.</td>
+						<td> Software/ Hardware</td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 3 </td>
+						<td> Have an easy-to-maintain implementation of both hardware and software.</td>
+						<td> Software/ Hardware</td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 4 </td>
+						<td> Be resistant to the elements, including vandalism and have a decent battery life.</td>
+						<td> Hardware</td>
+						<td> Should </td>
+					</tr>
+					<tr><td> 5 </td>
+						<td> Enable the transmission/ feedback of raw parking data from sensors to the cloud. </td>
+						<td> Software/ Hardware </td>
+						<td> Must </td>
+					</tr>
+					<tr><td> 6 </td>
+						<td> Provide data analytics to assess and transform the incoming raw data.</td>
+						<td> Software</td>
+						<td> Must </td>
+					</tr>	
+					<tr><td> 7 </td>
+						<td> Offer both a full and flexible API and GUI for extracting and examining the data sent from parking bay sensors with ease. </td>
+						<td> Software/G/UI </td>
+						<td> Should </td>
+					</tr>
+				</table>		
+		</div>
 
 			<div class="contentlast">
 				<img src="img/usecase.png"/>
-				<p>This section will contain the example use cases.</p>
-				<p>Assigned to: <strong>Victora/Gulliver</strong></p>
+				<p>Below, the five main use cases presented to the client can be found. </p> 
+					
+				<p><h1> Use Case 1 - Illegal Parking I </h1></p>
+					<p><strong> Scenario </strong></p>
+						<p>
+							Illegal parking costs motorists millions every year. An application of phone sensors combined with sensors in the environment to help notify them in the instances where they drive into an area to park but it is actually illegal and alternative spots nearby may prove useful. 
+						</p>
+						<p>
+							The system would automatically notify motorists when they drive into an area with an updated status of the conditions of parking there e.g. &#39parking allowed until&#39 &#60time limit&#62&#60spaces available in area&#62, &#39parking not allowed until&#39 &#60time limit&#62, &#39parking never allowed&#39, &#39parking unavailable&#39 &#60no spaces left&#62. It would also help notify them of nearby parking spots and how many spaces there are left there.
+						</p>
+					<p><strong> Key Points </strong></p>
+						<p><ol>
+								<li class="bulleted"> Platform flexibility - joined with multiple parking centre databases </li>
+								<li class="bulleted"> Noticing a car has stopped in attempt to park (perhaps driving over the parking sensor)  </li>
+								<li class="bulleted"> App receives notification from sensors that motorist cannot park here  </li>
+								<li class="bulleted"> App notifies motorist of this and suggests a nearby viable parking spot </li>
+								<li class="bulleted"> Potential use of GPS sensors within the phone (to broadcast current location) </li>
+							</ol>
+						</p>
+					<p><strong> Challenges: </strong></p>
+						<p><ol>
+								<li class="bulleted"> Potentially developing ways to prevent motorists from parking on the kerb in areas where there are signs stating it is illegal. Kerb-parking is also a potential hazard for the visually impaired and can damage the vehicle too. Doing this seems more feasible when having sensors inside the vehicle than sensors in the environment. </li>
+								<li class="bulleted"> System could probably be improved to tell if a driver has parked properly or not </li>
+							</ol>
+					</p>
+				
+				<p><h1> Use Case 2 - Council-Owned Refuse Collection </h1></p>
+					<p><strong> Scenario </strong></p>
+						<p>
+							Streetside refuse receptacles provided for the general public (and maintained by the local council) are currently cleaned out on a regular schedule. In some cases, however, bins fill up quickly to the point of overflowing - or at other times they’re hardly filled at all - yet they’re still collected on their designated day regardless. In order to more efficiently and economically spend resources, sensors could be placed within the bins to measure their respective states, feeding back to a central database. This information could then be interpreted in order to provide the refuse team with an optimised route, saving time and council expenditure whilst also improving the health and safety of the local environment.
+						</p>
+					<p><strong> Key Points </strong></p>
+						<p><ol>
+								<li class="bulleted"> Sensors required in situ to detect refuse levels </li>
+								<li class="bulleted"> GPS coordinates/bin ID or address would need to be stored for the sensor at installation </li>
+								<li class="bulleted"> Multiple sensors could be fitted to each unit to read additional data (e.g. footfall) </li>
+								<li class="bulleted"> Potential to also measure pollutants (e.g. bacteria build-up)  </li>
+								<li class="bulleted"> Raw data should be interpreted before entering database (converted to a percentage, for instance) </li>
+								<li class="bulleted"> Installation of sensors would involve calibration and require a way to add new bins to the database </li>
+							</ol>
+						</p>
+					<p><strong> Challenges: </strong></p>
+						<p><ol>
+								<li class="bulleted"> Readings should be reliable in order to maximise longevity and optimise efficiency </li>
+								<li class="bulleted"> Sensors should be designed for a long working life with little-to-no maintenance necessary </li>
+								<li class="bulleted"> Bins half-full or less still need to be emptied within a reasonable time scope before bacterial build up, insect infestation and potentially attracting vermin  </li>
+							</ol>
+					</p>
+				
+				<p><h1> Use Case 3 - Illegal Parking II </h1></p>
+					<p><strong> Scenario </strong></p>
+						<p>
+							Illegally parked vehicles can cause congestion. Implementing a series of sensors in the environment to form a network and part of a system for keeping track of these which then notifies a nearby Traffic Warden on duty could help cut congestion by making motorists less willing to park illegally.
+						</p>
+						<p>
+							This system would involve a kind of feedback system to the Traffic Warden. If they are within reasonable distance, they will be notified through an application that illegal parking has occurred at a &#60location, address&#62 to give out a fine.
+						</p>
+					<p><strong> Key Points </strong></p>
+						<p><ol>
+								<li class="bulleted"> A collection of sensor(s) situated in the environment for tracking whether a car has stopped and parked in an illegal space. </li>
+								<li class="bulleted"> Alternative: using a drone to take note of the areas where illegal parking has occurred and notify a system of this.  </li>
+								<li class="bulleted"> Potential capturing of license plate number for automated processing.  </li>
+							</ol>
+						</p>
+					<p><strong> Challenges: </strong></p>
+						<p><ol>
+								<li class="bulleted"> The progress could potentially be made automated if the license plate of motorists can be captured in illegal parking areas instead. </li>
+								<li class="bulleted"> May have to put physical and noticeable signs up in the area to notify motorists as Councils have gotten into legal trouble for issuing fines based on watching CCTV footage of motorists parking illegally. This would certainly serve as a preventative measure for motorists parking there in the first place - perhaps making the system somewhat obsolete in particular cases where there are times when parking in a specific spot is legal. Cases like double white/ yellow lines, people parking on the kerb (where applicable) would be fine.   </li>
+							</ol>
+					</p>
+				
+				<p><h1> Use Case 4 - Road Surface Conditions </h1></p>
+					<p><strong> Scenario </strong></p>
+						<p> 
+							Maintaining roads is a major draw on funds that all councils have to face. Whether it’s potholes or ice, the council is responsible for all public road surfaces and must spend its resources keeping them suitable and safe for use. Monitoring how rough a stretch of road is, for instance by gathering data from accelerometers bundled with GPS coordinates within individual cars, would mean that councils could target the areas in most need, enabling them to spend resources economically. A similar system could notify councils and road users alike of dangerous driving conditions - such as fog, high wind speeds, and wet or icy roads. Councils could use this data to help maintain drains, distribute gritters or ploughs on wintery days, and assist in the planning procedures for proposed building works.
+						</p>
+					<p><strong> Key Points </strong></p>
+						<p><ol>
+								<li class="bulleted"> Temperature sensors required to read road surface temperature </li>
+								<li class="bulleted"> Sensors needed to detect water levels on the road </li>
+								<li class="bulleted"> Communication between street-side sensor units and cars required in order to gain data on road vibrations </li>
+							</ol>
+						</p>
+					<p><strong> Challenges: </strong></p>
+						<p><ol>
+								<li class="bulleted"> Interpreting accelerometer data from cars in a reliable way </li>
+								<li class="bulleted"> Accurately measuring water level across a road’s width </li>
+							</ol>
+					</p>
+				
+				<p><h1> Use Case 5 - Street Lights & Weather Checking </h1></p>
+					<p><strong> Scenario </strong></p>
+						<p> 
+							Real-time, accurate weather conditions at a particular location of interest could help users make better travelling plans. By placing sensors on street lights to detect changes in atmospheric pressure, users would be able to tell more accurately if the area up ahead they are about to walk into is raining or not (sunny). Sensors could also be used to notify users of wind speeds in the area or whether the area is cloudy. The main draws of such an application would be it’s ability to provide real-time, understandable data to the public that is more accurate than the geological estimates or predictions provided by weather stations on the go. 
+						</p>
+					<p><strong> Key Points </strong></p>
+						<p><ol>
+								<li class="bulleted"> A mixture of sensors required to measure atmospheric pressure would be needed. </li>
+								<li class="bulleted"> A database to collect this raw data and convert it into something meaningful for users. </li>
+								<li class="bulleted"> Sensors placed on top of street lights to gather data.   </li>
+								<li class="bulleted"> Would need to store GPS Co-ordinates/ locations of sensors on individual street lights (no. of street lights to implement this in the same area to be considered: not every single one: but perhaps one in every ‘set range/ distance’.   </li>
+								<li class="bulleted"> Potential GPS location data from user’s phone required </li>
+								<li class="bulleted"> Potential Plug-and-Play aspect where users are within a 100m range -- connecting to a street light sensor up ahead to gain real-time info.  </li>
+							</ol>
+						</p>
+					<p><strong> Challenges: </strong></p>
+						<p><ol>
+								<li class="bulleted"> In terms of real-world implementation, would probably require an extensive network of sensors on street lights to be applicable. </li>
+							</ol>
+					</p>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			</div>
 		</div>
 
