@@ -1,9 +1,9 @@
-const int pingPin = 40;
-
+const int pingPin = 22;
+byte byteRead;
 void setup() {
   // initialize serial communication:
   Serial.begin(9600);
-  Serial2.begin(2400);
+  Serial2.begin(115200);
 }
 
 void loop()
@@ -29,15 +29,15 @@ void loop()
 
   // convert the time into a distance
   cm = microsecondsToCentimeters(duration);
-  
 
-  
-  Serial.print("hi");
-  delay(5000);
+  Serial.print(cm);
+  Serial2.println(cm);
+  delay(500);
 }
 
-
+//Gives a fairly accurate conversion to centimetres
 long microsecondsToCentimeters(long microseconds)
 {
-  return microseconds * 17.15;
+  return (long)microseconds/55;
 }
+
