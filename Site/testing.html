@@ -42,8 +42,41 @@
 		<div class="main">
 			<div class="content">
 				<img src="img/testingstrat.png"/>
-				<p>This section will contain details about the testing strategy</p>
-				<p>Assigned to: <strong>Johan</strong></p>
+				<p><h1> Testing Hardware </h1></p>
+				<p>Testing hardware is very different from testing software. 
+				When testing hardware, the results may vary from device to device, while on software it should always act the same.
+				The hardware tests we will have to do for our product can be split into two sections; Sensor accuracy and data transmission.
+				</p>
+				<p><h2> Sensor Accuracy </h2></p>
+				<p>To improve the quality of our readings, it is important that we test our sensors exhaustively. 
+				Some documentation already exists for certain sensors in terms of accuracy of sensors at different ranges. 
+				In the prototype we used an SRF-05 Ultra-Sonic Ranger. Under its technical specifications, the following diagram was provided:
+				</p>
+				<p><img src="img/beam.gif"/> </p>
+				<p>The diagram is of the ultra sound beam pattern created by the device. 
+				As seen the device reads mostly what is straight in front of it, however it can accidentally pick up a reading of something slightly next to it. 
+				What we need to test here is how far to the sides that is, as it could give us a false reading of the location of the car.
+				<p>Similar tests must be done for infrared sensors. Infrared sensors have a determined range for where accuracy is considered reliable. 
+				Below is a diagram of different kinds of infra red sensors and their maximum and minimum ranges:
+				 </p>
+				 <p><img src="img/infraredRanges.jpg"/> </p>
+				 <p>What we need to do in terms of testing with infrared is to determine the ride height of cars
+				 From there, we can choose the right kind of sensors who's minimum and maximum ranges fit that of the minimum and maximum ride heights of cars.
+				 </p>
+				 <p>
+				 Light sensors (or photodiodes) require some pretty advanced testing to ensure accurate results.
+				 Since the implementation of this kind of sensor requires an advanced algorithm to determine the difference between a car being parked or not,
+				 the algorithm needs to be tested to ensure that it can correctly tell if a car is parked in a bay or not. 
+				 It needs to be able to detect changes in the environment and readjust its definition of a car being parked. 
+				 Long periods of continuous readings will be necessary where cars will enter and leave the bay at random times during the day. 
+				 </p>
+				 <p>
+				 A similar type of testing is required for the webcamera sensor. Again changes in the environment needs to be taken into consideration in the creation of the algorithm.
+				 </p>
+				 <p><h2> Data transmission </h2></p>
+				 <p>To ensure that our data is being transmitted correctly, we need to do stress tests on the system. By sending different sized packages of information through our BlueTooth, 
+				 ZigBee or WiFi transmitters, we can determine the capacity of our system. 
+				 If we already know the speed of transmission possible for our transmitters, we can simulate different sized networks to see what is possible and what is the most efficient.</p>
 			</div>
 
 			<div class="contentlast">
