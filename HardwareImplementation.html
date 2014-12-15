@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>Group 10</title>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+<link rel="icon" type="type/png" href="img/favicon_3.png"/>
+
+</head>
+
+<body>
+	<div class="header">
+		<div class="title" style="height: 66px">
+			<img src="img/title.png"></img>
+		</div>
+	</div>
+
+	<div class="wrapper">
+
+		<div class="panel">
+			<div class="nav">
+				<ul class="navbar">
+					<li><a = href="index.html">HOME</a></li>
+					<li><a = href="mgmt.html">PROJECT MANAGEMENT</a></li>
+					<br>
+					<img src="img/navdivide.png"></img>
+					<br>
+					<br>
+					<li><a = href="background.html">BACKGROUND</a></li>
+					<li><a = href="requirements.html" >REQUIREMENTS</a></li>
+					<li><a = href="research.html">RESEARCH</a></li>
+					<br>
+					<img src="img/navdivide.png"></img>
+					<br>
+					<br>
+					<li><a = href="design.html">DESIGN</a></li>
+					<li><a = href="implementation.html" class="disabled">IMPLEMENTATION</a></li>
+					<li><a = href="testing.html">TESTING</a></li>
+					<li><a = href="term2.html">FUTURE PLANS</a></li>
+			</ul>
+			</div>
+		</div>
+
+		<div class="main">
+			<div class="content">
+				<p><h1>Hardware Prototyping</h1></p>
+	
+			<p>
+				To demonstrate our project, we created a prototype to show at a small scale what our system might look like. The demo itself consists of a sensor SRF05 Ultra-Sonic Range Finder , along with a  WRL-12506 Sparkfun Bluetooth Mate Silver Transmitter and an Arduino. Below is a picture of what the final device looks like:
+			</p>
+			<p>
+				<h2>Picture of final prototype:</h2>
+			</p>
+			 <img src="Temporaryimg/Prototype.jpg" style="width:317px;height:426px" >
+			<p>
+				<h2>Schematics for the prototype:</h2>
+			</p>
+			<img src="Temporaryimg/PrototypeSchematics.png" style="width:600px;height:668px" >
+			<h2>How it works:</h2>
+			<p>
+				As seen in the diagram, we have an ultrasonic sensor connected to a 5V pin, a digital pin and ground pins. This allows us to use the digital pin as both our input trigger and our output echo. In our code we set the pin to be an output pin and send a small ping to the ultrasonic sensor. We then immediately switch the pin to be an input pin that measures the duration of the signal send by the sensor. 
+			</p>
+			<h2>Calculating the distance based on Ultrasound reading:</h2>
+			<p>
+				The length of the sensor is equal to the amount of time it took for the ultrasound created by the sensor to hit a target and come back. This duration can then be converted into a centimeters distance. Since the speed of sound stays the same, we can determine what the distance is by using the below calculations:
+			</p>
+			<p><i>
+				Speed = Distance / Time
+			</i></p>
+			<p><i>
+				Speed of sound = 34'300 cm/s = 34.3 cm/ms
+			</i></p>
+			<p>
+				Since the time measurement received was there and back, we want to divide the duration by 2:
+			</p>
+			<p><i>
+				Speed = Distance / (Time/2)
+			</i></p>
+			<p><i>
+				17.15 = Distance / Time
+			</i></p>
+			<p><i>
+				Distance = 17.15 * Time
+			</i></p>
+			<p>
+				This formula will convert the duration of the echo transmitted by the sensor to a centimeter distance.
+			</p>
+			<p>
+				Once the distance has been calculated, we use the bluetooth transmitter to wirelessly transmit the data. The Bluetooth transmitter is connected to a 3.3V pin, a ground pin, a Tx (transmitting) pin and an Rx (receiving) pin. By sending data through the transmitting pin, we are able to send the data to a computer nearby. The computer is acting as our zone controller and handles uploading to the database.
+			</p>
+			<p>
+				This prototype shows what our system will most likely do, except there will be more devices doing this. The sensor can be any sensor that returns a binary/string value so it is not limited to this example. 
+			</p>
+			
+</body>
+</html>
