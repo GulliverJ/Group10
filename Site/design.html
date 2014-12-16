@@ -48,7 +48,30 @@
 
 			<div class="content">
 				<img src="img/hardware.png"/>
-				<p>This section will contain the hardware design details</p>
+				<p><h1>Overview</h1></p>
+				<p>To create our final system, there are a few design features we should consider. 
+				The way we choose to lay out our devices and the way we plan to connect them is going to be vital in optimising our final product</p>
+				<p><h2>Sensor Network Layout</h2></p>
+				<p>There are many different ways in which we could connect our devices together. 
+				Our initial idea was to pair each sensor directly to the user's phone. 
+				This would be an incredibly simple system, however it would only allow you to access information about sensors very close to you. 
+				In the use case of parking monitoring, this would not be enough as it would only tell you what you already know. 
+				If you are close enough to connect to the parking bay, you are close enough to see with your own eyes if its empty or not. 
+				It is therefore vital that we upload this data in some way, which introduces the second idea we had.
+				This idea involves setting up multiple sensors in one area and one 'zone controller'. 
+				The sensors would be responsible for gathering data and sending it off with either Bluetooth or ZigBee to the zone controller. 
+				The zone controller is then responsible for storing this data temporarily and then uploading it to a master database where all the sensors in the entire system is stored.
+				The general idea looks like this: </p>
+				<img src="img/SensorConfiguration1.png" style="width:650px;height:500px"/>
+				<p>As seen here, every sensor is connected directly to the zone controller in its local area. 
+				This is definitely not the most efficient way to do this, as in most use cases, the sensors are so far spread apart that only a couple of sensors might be in range to connect to the zone controller.
+				This would increase the amount of zone controllers needed making the system very inefficient. 
+				To optimize the system, we can make use of the fact that we are not using all the upload speed to connect a sensor to the zone controller.
+				This means that are able to send more information from one sensor than it is able to produce on its own. What this allows us to do is use sensors as intermediate steps to get to the zone controller.
+				the configuration for this can be seen below:</p>
+				<img src="img/SensorConfiguration2.png"style="width:650px;height:500px"/>
+				<p>As seen here, we are able to incorporate many more sensors to our network than previously. In this example, the sensor closest to the zone controller will send its own data along with the data from the 3 sensors further down the tree.
+				This means it is sending 4 times the amount of data compared to the first configuration. Since we are literally sending bytes of information at a time from each node, this will not be a problem.</p>
 				<p>Assigned to: <strong>Johan</strong></p>
 			</div>
 
