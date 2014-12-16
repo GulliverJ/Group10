@@ -50,13 +50,90 @@
 					<li class="bulleted">Environmental (looking at physical implementation</li>
 					<li class="bulleted">Anything else... Go nuts</li>
 				</ul>
-				<p>Assigned to: <strong>Johan/Victoria</strong></p>
+				<p><h1>Potential sensors and their applications</h1></p>
+				<p>This section details a variety of sensors and their potential use for object detection in relation to
+				the use case of <b>'parking/illegal parking'</b>. What sensors we may use as hardware to support the use
+				case, how these would be configured in different environments, considerations and lastly, the
+				strengths and weaknesses associated with each have been documented below. </p>
+				<p><h2>Approaches:</h2></p>
+				<p><h3>A | Light sensors/ Photodiodes as a method of object detection</h3></p>
+				<p>By making use of these sensors, the general idea was to detect a 'spike' in the change of light
+				intensity. One potential configuration for these sensors can be seen below: </p>
+				<p><img src="img/ParkSensorUnderneath.png"></img></p>
+				<p>Detecting the presence of a vehicle would then be a matter of a change in sensor readings from a
+				high intensity to a low, indicating the sensor in question is covered by the shadow of a vehicle. </p>
+				<p>This approach alone however, may only be suited for indoor parking where the light source would
+				keep in near-constant levels, enough for a default state to be identified for 'bay unoccupied' which
+				changes in light intensity could then be matched against. Experimentation would have to occur in
+				order to test out how great the 'dip' from an object covering it from a range of specified heights
+				(taking into account car height which is lower for sport cars and higher for vehicles like off roaders)
+				and also the different width x lengths of said objects in order to determine whether this change is
+				great enough for object detection. </p>
+				<p>Depending upon their configuration in the environment of an indoor parking lot, the sensors could
+				potentially indicate the parking over two spaces instead of one. This would, however, require having
+				more sensors to be implemented. </p>
+				<p><img src="img/configuration1.png" align="left" hspace=10/> One consideration to be made here, with the configuration seen left, would
+				be whether one of the sensors placed between two parking bays is
+				accidentally covered by the shadow of a car parked in only one of the two
+				spaces resulting in a false reading of 'parking over two spaces'. This would
+				depend on where the light source is and also the height of the car, making
+				the extended detection of unethical parking unreliable and unfeasible. <br><br>Out-door parking making use of these sensors during day-time might be possible, however, as
+				readings would be based upon the main light source of the sun, while gradual changes could be
+				handled – adjusting the sensors to sudden changes in weather and also keeping track of whether a
+				vehicle is above it or not is probably not feasible.</p>					
+				<p>Alternatively, a secondary option would be using photodiodes for generating power for other
+				sensors instead. The key here would then be whether such a device could be powered solely by solar
+				power removing the need of installing a battery. Experimentation would need to be done to find out
+				how much power can be created using solar power sensors vs. how much the sensors we use
+				require. If we find that we can produce more power than consumed, then this might be viable. </p>
+				<p><h3>B | Multiple infra-red sensors for object detection </h3></p>
+				<p>One idea involves having a hose pipe with multiple, cheap IR sensors in it wired together and then
+				fastening this to the side of a pavement/ wall instead of having separate sensor units. </p>
+				<p><h1>insert img here</h1></p>
+				<p>The range an infrared sensor can detect reliably can vary a lot. Ideally, a sensor that could read
+				reliably at a range of at least 80cm would be a candidate for detecting the presence of a vehicle. The
+				data transmitted would then be a 'YES/NO' binary signal based on whether the sensors' reading was
+				maxed out 'space unoccupied' or not 'space occupied' rather than the distance from the sensor to
+				the nearest object. </p>
+				<p> possible configurations for these sensors can be seen below: </p>
+				<p><h1>insert img here</h1></p>
+				<p>Advantages / disadvantages of IR table: </p>
+				<p><h1>insert table here</h1></p>
+				<p><h3>C | Ultrasound as an alternative to Infra-red </h3></p>
+				<p>There are three possible configurations of sensors: ultrasound sensor readings are affected by dirt,
+				hence it may be more reasonable if, in an outdoor environment they are placed alongside the
+				pavement (perhaps stuck in) at a 45 degree angle pointing upwards to detect the presence of a car
+				as the pavement would provide some shielding. Experimentation would have to occur to determine
+				the impact outdoor weather conditions may have on the reliability of these sensors' results i.e.
+				chances of resulting in false positives.  </p>
+				<p><h1>insert img here</h1></p>
+				<p>Alternative options would include placing the sensor directly below the car as appears convention.
+				Mounting the sensor units directly above car parking bays would work indoors as well. A kind of	
+				lighting system may also be useful here, where motorists are indicated to which spaces are
+				'occupied' or 'unoccupied' via the lights 'RED' or 'GREEN' respectively. </p>
+				<p><h3>D | Web camera</h3></p>
+				<p>Algorithms for motion-detection combined with the use of a web camera mounted on a street light
+				for video capturing purposes was first considered. Given the high volume of data which would have
+				to be captured, stored then processed and the costs this would incur however, short, sporadic
+				capture every half-minute and analysing this data by way of setting up a ‘black box’ that carries out
+				calculations on the spot via machine learning was considered to have better potential. </p>
+				<p>Again, how well this performs in the outdoor environment will have to be extensively tested.
+				Creating an algorithm capable of detecting cars would be the main challenge. Considerations must
+				be taken into how well such a sensor will perform under extreme weather conditions, light
+				conditions and during the night (visibility issues). </p>
+				<p><h3>E | Photoelectric sensors (680px wide diagrams) </h3></p>
+				<p><h3>F | Electromagnetic sensors / Inductive loops </h3></p>
+				<p>This would involve treating the steel frame of a vehicle as a remote sensor that can be detected as
+				an electromagnetic material. </p>
+				<p><h3>G | A net of pressure sensors </h3></p>
+				
 			</div>
 
 			<div class="content">
 				<img src="img/results.png"/>
 				<p>This section will contain the decisions we made as a consequence of the research.</p>
 				<p>Assigned to: <strong>Johan/Victoria</strong></p>
+				
 			</div>
 
 			<div class="contentlast">
