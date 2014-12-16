@@ -11,25 +11,17 @@ import java.util.Enumeration;
 
 public class SerialRead implements SerialPortEventListener {
 	SerialPort serialPort;
-        /** The port we're normally going to use. */
-	private static final String PORT_NAMES[] = { 
-			"COM7"
-	};
+
 	private String portToRead = null;
 	
 	public int readResult = -3;
 	
-	/**
-	* A BufferedReader which will be fed by a InputStreamReader 
-	* converting the bytes into characters 
-	* making the displayed results codepage independent
-	*/
 	private BufferedReader input;
-	/** The output stream to the port */
 	private OutputStream output;
-	/** Milliseconds to block while waiting for port open */
+	
+	/* Milliseconds to block while waiting for port open */
 	private static final int TIME_OUT = 2000;
-	/** Default bits per second for COM port. */
+	/* Default bits per second for COM port. */
 	private static final int DATA_RATE = 9600;
 
 	
@@ -49,11 +41,9 @@ public class SerialRead implements SerialPortEventListener {
 		//First, Find an instance of serial port as set in PORT_NAMES.
 		while (portEnum.hasMoreElements()) {
 			CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
-			for (String portName : PORT_NAMES) {
-				if (currPortId.getName().equals(portToRead)) {		//used to be portName
-					portId = currPortId;
-					break;
-				}
+			if (currPortId.getName().equals(portToRead)) {		//used to be portName
+				portId = currPortId;
+				break;
 			}
 		}
 		if (portId == null) {
@@ -87,10 +77,7 @@ public class SerialRead implements SerialPortEventListener {
 		}
 	}
 
-	/**
-	 * This should be called when you stop using the port.
-	 * This will prevent port locking on platforms like Linux.
-	 */
+	/* Closes the port after use */
 	public synchronized void close() {
 		if (serialPort != null) {
 			serialPort.removeEventListener();
@@ -98,9 +85,7 @@ public class SerialRead implements SerialPortEventListener {
 		}
 	}
 
-	/**
-	 * Handle an event on the serial port. Read the data and print it.
-	 */
+	/* Runs when a serial event occurs (such as when it reads a return from the Arduino) */
 	public synchronized void serialEvent(SerialPortEvent oEvent) {
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
@@ -108,14 +93,14 @@ public class SerialRead implements SerialPortEventListener {
 
 				if (input.ready()) {
 					
-					inputLine = input.readLine();
+					inputLine = input.readLine();	// Ignores initial "Start" connection string
 					output.write(1);
-					output.flush();
+					output.flush();					// Sends a byte of data to initiate arduino reading
 					inputLine = input.readLine();
 					
 					System.out.println(inputLine);
 					close();
-					readResult = Integer.parseInt(inputLine);
+					readResult = Integer.parseInt(inputLine); // Converts the read string value into an integer value
 					
 				}
 			} catch (Exception e) {
@@ -123,18 +108,4 @@ public class SerialRead implements SerialPortEventListener {
 			}
 		}
 	}
-	/*
-	public static void main(String[] args) throws Exception {
-		SerialRead main = new SerialRead("COM7");
-		main.initialize();
-		Thread t=new Thread() {
-			public void run() {
-				//the following line will keep this app alive for 1000 seconds,
-				//waiting for events to occur and responding to them (printing incoming messages to console).
-				try {Thread.sleep(1000000);} catch (InterruptedException ie) {}
-			}
-		};
-		t.start();
-		System.out.println("Started");
-		*/
 }
