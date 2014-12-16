@@ -41,6 +41,101 @@
 
 		<div class="main">
 			<div class="content">
+			<p><h1>Network architecture Considerations (make into picture)</h1></p>
+			<p><h1>Ways to send data</h1></p>
+			<p>There are many different ways to send data both wirelessly and wired. Through extensive research we narrowed it down to a few different ways.</p>
+			<p><h2>WiFi</h2></p>
+			<p>WiFi is a wireless technology that allows devices to connect to the Internet. 
+			It uses the IEEE 802.11 protocol standards to transmit data. 
+			The advantage of using a network like this one, is that it gives access to the Internet. This means that there is virtually no limit to the range of our devices.
+			The drawback of using WiFi is that it uses far more power than most other devices and would therefore not be suitable unless a sustainable power supply is provided.
+			Since our sensors will be placed on roads with no easy access electricity, Wifi will most likely not be the best way to transmit data. 
+			One way WiFi will be useful however, is as a zone controller. All the data thats being transmitted between sensors can only send it to a local network, however WiFi will allow us to take that data and upload it to the internet.
+			The zone controller does not need to be placed on the road and can therefore be placed near a power supply along the street. </p>
+			<p><h2>Bluetooth</h2></p>
+			<p>Bluetooth is another way to transmit data wirelessly. Bluetooth uses short wavelength UHF radio waves to transmit its data and is used for local networks. 
+			Its physical range can vary from 1-100 meters with its power supply varying with that. 
+			With the new Bluetooth 4.0, you are no longer limited to 8 devices, making it a possible data transmission technology for our use case. 
+			Its data rate is rather lower, but in our use case we are not transmitting large enough quantities of data for this to matter.</p>
+			<p><h2>ZigBee</h2></p>
+			<p>ZigBee is an alternative to Bluetooth, in that they serve similar roles. ZigBee is a low data rate, low power and lower range device designed for local networks.
+			It uses less power than Bluetooth, but its range is also lower.</p>
+			<p><h2>Using a Serial cable</h2></p>
+			<p>Using a Serial cable is a wired way of transferring data across a network. An obvious downside to this is the fact that the devices will have to be connected together.
+			If we decide to place our sensors on the actual parking bay, we would have to dig down these cables to to prevent them from being destroyed. This will drive up the cost of our system.
+			In the cases where our sensors are not directly on the parking bay, using a cable can be beneficial. It is by far the most reliable way to send data, with a decent range.
+			The range of cables vary with data rate as seen below:</p>
+			<p><table> 
+					<tr><td>Data Rate (bps) </td> 
+						<td> Distance (m) </td>
+					</tr>
+					<tr><td>2400</td> 
+						<td> 60 </td>
+					</tr>
+					<tr><td>4800</td> 
+						<td> 30</td>
+					</tr>
+					<tr><td>9600</td> 
+						<td> 15</td>
+					</tr>
+					<tr><td>19200</td> 
+						<td> 7.6</td>
+					</tr>
+					<tr><td>38400</td> 
+						<td> 3.7</td>
+					</tr>
+					<tr><td>56000</td> 
+						<td> 2.6</td>
+					</tr>
+			</table>
+			</p>
+			<p>As seen, the range is halved as the data rate is doubled.</p>
+			<p><h2>Technical Data Comparison</h2></p>
+			<p><table> 
+					<tr><td></td> 
+						<td> Wifi </td>
+						<td> Bluetooth 4.0 </td>
+						<td> Bluetooth 3.0</td> 	
+						<td> ZigBee</td> 
+						<td> Wired Connection</td> 
+					</tr>
+					<tr><td>Speed</td> 
+						<td> Fast </td>
+						<td> Slow </td>
+						<td> Normal</td> 	
+						<td> Slow</td> 
+						<td> Fast</td> 
+					</tr>
+					<tr><td>Range</td> 
+						<td> Unlimited</td>
+						<td> ~100m </td>
+						<td> &#60 100m</td> 	
+						<td> 10-100m</td> 
+						<td> 2.6-60m</td> 
+					</tr>
+					<tr><td>Number of devices</td> 
+						<td> Wifi </td>
+						<td> Bluetooth 4.0 </td>
+						<td> Bluetooth 3.0</td> 	
+						<td> ZigBee</td> 
+						<td> Unlimited </td> 
+					</tr>
+					<tr><td>Power Consumption</td> 
+						<td> ~116ma </td>
+						<td> &#60 30ma </td>
+						<td> &#60 15ma</td> 	
+						<td> &#60 9ma</td> 
+						<td> Low</td> 
+					</tr>
+			</table>
+			</p>	
+			<p><h2>Final thoughts</h2></p>
+			<p>Depending on the use case and kind of sensor we are working with, some protocols work better than other. 
+			For our parking bay monitoring case we would use ZigBee for the wireless datatransmission, but we may decide to use wired if we use something like infrared.
+			We chose ZigBee over Bluetooth, because the range did not matter in this case and the lower power consumption is more beneficial. </p>
+			
+			</div>
+			<div class="content">
 				<img src="img/research.png"/>
 				<p>This section will contain the research findings, by section. Sections may include:</p>
 				<ul>
@@ -126,6 +221,7 @@
 				<p>This would involve treating the steel frame of a vehicle as a remote sensor that can be detected as
 				an electromagnetic material. </p>
 				<p><h3>G | A net of pressure sensors </h3></p>
+
 				
 			</div>
 
