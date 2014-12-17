@@ -66,8 +66,8 @@
 			In the cases where our sensors are not directly on the parking bay, using a cable can be beneficial. It is by far the most reliable way to send data, with a decent range.
 			The range of cables vary with data rate as seen below:</p>
 			<p><table> 
-					<tr><td>Data Rate (bps) </td> 
-						<td> Distance (m) </td>
+					<tr><th>Data Rate (bps) </th> 
+						<th> Distance (m) </th>
 					</tr>
 					<tr><td>2400</td> 
 						<td> 60 </td>
@@ -92,12 +92,12 @@
 			<p>As seen, the range is halved as the data rate is doubled.</p>
 			<p><h2>Technical Data Comparison</h2></p>
 			<p><table> 
-					<tr><td></td> 
-						<td> Wifi </td>
-						<td> Bluetooth 4.0 </td>
-						<td> Bluetooth 3.0</td> 	
-						<td> ZigBee</td> 
-						<td> Wired Connection</td> 
+					<tr><th></th> 
+						<th> WiFi </th>
+						<th> Bluetooth 4.0 </th>
+						<th> Bluetooth 3.0</th> 	
+						<th> ZigBee</th> 
+						<th> Wired Connection</th> 
 					</tr>
 					<tr><td>Speed</td> 
 						<td> Fast </td>
@@ -188,30 +188,123 @@
 				<img src="img/greydot.png"/>
 				<p>One idea involves having a hose pipe with multiple, cheap IR sensors in it wired together and then
 				fastening this to the side of a pavement/ wall instead of having separate sensor units. </p>
-				<p><h1>insert img here</h1></p>
+				<img src="img/pipe.png"/>
 				<p>The range an infrared sensor can detect reliably can vary a lot. Ideally, a sensor that could read
 				reliably at a range of at least 80cm would be a candidate for detecting the presence of a vehicle. The
 				data transmitted would then be a 'YES/NO' binary signal based on whether the sensors' reading was
 				maxed out 'space unoccupied' or not 'space occupied' rather than the distance from the sensor to
 				the nearest object. </p>
 				<p> possible configurations for these sensors can be seen below: </p>
-				<p><h1>insert img here</h1></p>
-				<p>Advantages / disadvantages of IR table: </p>
-				<p><h1>insert table here</h1></p>
+				<p><img src="img/Parkconfiguration1.png" hspace=10 style="width:320px;height:389px"/><img src="img/Parkconfiguration2.png" hspace=10 align="right"  style="width:320px;height:240px"/></p>
+				<p>As seen, there is both a sensor in the middle of the parking bay and one on each line between parking bays. 
+				The ones in the middle are to simply detect if a car is occupying the bay or not. 
+				The ones on the line are to monitor if a car is covering more than 1 parking bay and is therefore parked illegally.</p>
+				<p><strong> Advantages of IR </strong></p>
+					<p><ol>
+							<li class="bulleted"> Wide variety of ranges (depending on product).</li>
+							<li class="bulleted"> Low power consumption </li>
+							<li class="bulleted"> Low cost </li>
+					</ol></p>
+				
+				<p><strong> Disadvantages of IR </strong></p>
+					<p><ol>
+							<li class="bulleted"> Can not read values of 0cm range </li>
+							<li class="bulleted"> Power consumption higher than that of ultrasound </li>
+					</ol></p>
+				<p><strong>Possible sensors available on the market:</strong></p>
+				<p>
+				<table> 
+					<tr><th>Feature </th> 
+						<th>SHARP GP2D120XJ00F </th>
+						<th>SHARP GP2Y0A02YK </th>
+						<th>SHARP GP2Y0A21YK </th>
+						<th>SHARP GP2Y0A710YK0F  </th>
+					</tr>
+					<tr><td>Range</td> 
+						<td> 4-30cm </td>
+						<td> 10-80cm </td>
+						<td> 10-80cm </td>
+						<td> 100-550cm </td>
+					</tr>
+					<tr><td>Power Consumption</td> 
+						<td> 33-50mA</td>
+						<td> 33-50mA</td>
+						<td> 33-40mA</td>
+						<td> 33-50mA</td>
+					</tr>
+					<tr><td>Operating Voltage</td> 
+						<td> 4.5-5.5V</td>
+						<td> -0.3-7.0V</td>
+						<td> 0.4-3.1V</td>
+						<td> 4.5-5v5V</td>
+					</tr>
+					<tr><td>Cost</td> 
+						<td> $11</td>
+						<td> $16</td>
+						<td> $15</td>
+						<td> $16</td>
+					</tr>
+				</table>	
+				</p>
 				<br>
 				<p><span class="research">C</span> | Ultrasound as an alternative to Infra-red</p>
 				<img src="img/greydot.png"/>
-				<p>There are three possible configurations of sensors: ultrasound sensor readings are affected by dirt,
-				hence it may be more reasonable if, in an outdoor environment they are placed alongside the
-				pavement (perhaps stuck in) at a 45 degree angle pointing upwards to detect the presence of a car
-				as the pavement would provide some shielding. Experimentation would have to occur to determine
-				the impact outdoor weather conditions may have on the reliability of these sensors' results i.e.
-				chances of resulting in false positives.  </p>
-				<p><h1>insert img here</h1></p>
+				<p>There are some limitations with using Ultrasound. 
+				If the object you are reflecting your sound wave off is at too wide of an angle, no sound wave will return to the device and a maxed out reading will be read.
+				This limits the configurations of this kind of sensor as the following is not possible for ultrasound, but possible for Infrared:
+				</p>
+				<p><img src="img/ultrasoundangle.png" style="width:670px;"/></p>
 				<p>Alternative options would include placing the sensor directly below the car as appears convention.
 				Mounting the sensor units directly above car parking bays would work indoors as well. A kind of	
 				lighting system may also be useful here, where motorists are indicated to which spaces are
 				'occupied' or 'unoccupied' via the lights 'RED' or 'GREEN' respectively. </p>
+				<p><strong> Advantages of US </strong></p>
+					<p><ol>
+							<li class="bulleted"> low and high ranges possible on one device.</li>
+							<li class="bulleted"> Very Low power consumption. </li>
+							<li class="bulleted"> Can read values of 0cm ranges. </li>
+					</ol></p>
+				
+				<p><strong> Disadvantages of US </strong></p>
+					<p><ol>
+							<li class="bulleted"> High cost </li>
+							<li class="bulleted"> Can not read values at an angle.</li>
+					</ol></p>
+				<p><strong>Possible sensors available on the market:</strong></p>
+				<p>
+				<table> 
+					<tr><th>Feature </th> 
+						<th>MaxSonar-EZ1 </th>
+						<th>Parallax PING Ultrasonic Sensor</th>
+						<th>SeeedStudio Ultrasonic Range Finder</th>
+						<th>Devantech SRF05 Ultrasonic Range Finder</th>
+					</tr>
+					<tr><td>Range</td> 
+						<td> 0-645cm </td>
+						<td> 2-300cm </td>
+						<td> 3-400cm</td>
+						<td> 1-400cm </td>
+					</tr>
+					<tr><td>Power Consumption</td> 
+						<td> 2mA</td>
+						<td> 20mA</td>
+						<td> 15mA</td>
+						<td> 4mA</td>
+					</tr>
+					<tr><td>Operating Voltage</td> 
+						<td> 2.5-5.5V</td>
+						<td> 5V</td>
+						<td> 5V</td>
+						<td> 5V</td>
+					</tr>
+					<tr><td>Cost</td> 
+						<td> $26</td>
+						<td> $30</td>
+						<td> $15</td>
+						<td> $28</td>
+					</tr>
+				</table>	
+				</p>
 				<br>
 				<p><span class="research">D</span> | Web camera</p>
 				<img src="img/greydot.png"/>
