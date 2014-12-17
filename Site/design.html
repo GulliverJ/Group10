@@ -42,8 +42,22 @@
 		<div class="main">
 			<div class="content">
 				<img src="img/system.png"/>
-				<p>This section will contain the system designs (sensor arrangements etc.)</p>
-				<p>Assigned to: <strong>Victoria/Gulliver</strong></p>
+				<p>Our system design has been formed based off of the extensive research we carried out, and consists of multiple components all working together, often with subsystems within them. The design for the prototype can be found on the <a href="implementation.html">Implementation</a> page. The design can be summarised thus:</p>
+				<img src="img/image.jpg"/>
+				<br>
+				<h1>1. Reading raw data</h1>
+				<img src="img/greyrule.png"/>
+				<p>A sensor will necessarily need to communicate wirelessly with a node before its data can be sent to the SQL database. This decision was based on the idea that fitting a wifi module to every sensor would cause the sensors, which are supposed to be kept low-profile and consume a minimal amount of energy in order to extend working life, to consume a vast amount of power. Therefore, it was decided that the sensors would instead communicate via Bluetooth with a node with wifi capability. Details for this can be found in the section below.</p>
+				<h1>2. Database Upload</h1>
+				<img src="img/greyrule.png"/>
+				<p>Once the data is retrieved from the sensor and read by the node, the node must upload the data to the central server's database. There are a number of methods for doing this, but as agreed with our client we decided that we would be writing in Java, as it was familiar to us, offers a wide range of libraries, and can be used to prototype with a Raspberry Pi.</p>
+				<p>The SQL database will be hosted through Windows Azure for the protototype for convenience (see <a href="implementation.html">Implementation</a>), but will ideally be hosted on Orange cloud service in the final version. Connection will be established to the database in the Java code, running through the Raspberry Pi (the node) and the readings are to be sent as queries to update the relevant rows in the table.</p>
+				<h1>3. Analysing the raw data and presenting it to the database</h1>
+				<img src="img/greyrule.png"/>
+				<p>Once in the database, the raw data should be analysed in order to determine the application-level state (i.e. translate what could simply be a float reading into a meaningful result, like indicating that a parking space is occupied). This will be completed by making use of a self-written API for accessing the database and processing the raw values in a virtual machine running analytical algorithms. This analysed data will be fed back to an application-specific table (such as a "Parking" table for parking sensors), offering relevant information (e.g. "spaceOccupied").</p>
+				<h1>4. Building an API for external web access</h1>
+				<img src="img/greyrule.png"/>
+				<p>A web-based API (for instance written in JSON) will allow external access to the now-populated database, so that developers, researchers, or maintenance admins might build applications which monitor and use the data.</p>
 			</div>
 
 			<div class="content">
@@ -72,7 +86,6 @@
 				<img src="img/SensorConfiguration2.png"style="width:650px;height:500px"/>
 				<p>As seen here, we are able to incorporate many more sensors to our network than previously. In this example, the sensor closest to the zone controller will send its own data along with the data from the 3 sensors further down the tree.
 				This means it is sending 4 times the amount of data compared to the first configuration. Since we are literally sending bytes of information at a time from each node, this will not be a problem.</p>
-				<p>Assigned to: <strong>Johan</strong></p>
 			</div>
 
 			<div class="contentlast">
