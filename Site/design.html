@@ -75,16 +75,166 @@
 				<p>Assigned to: <strong>Johan</strong></p>
 			</div>
 
-			<div class="content">
-				<img src="img/uidescription.png"/>
-				<p>This section will detail the requirements of the user-interface</p>
-				<p>Assigned to: <strong>Gulliver</strong></p>
-			</div>
-
 			<div class="contentlast">
 				<img src="img/uidesign.png"/>
-				<p>This section will contain details of the UI design.</p>
-				<p>Assigned to: <strong>Gulliver</strong></p>
+				<p>The system we&#39;ve been tasked with has no graphical user-interface in its specification, but a web-based user-interface for developers would be of great use. Thus, we have developed our own requirements for a UI, and designed some prospective pages for demonstration purposes. It is a real possibility that a similar UI will be implemented in term 2.</p>
+				<h1>Requirements</h1>
+				<img src="img/greyrule.png"/>
+				<p>The UI must:</p>
+				<ul>
+					<li class="bulleted">Offer a search function to browse the sensor database</li>
+					<li class="bulleted">Allow for filtering results depending on a range of criteria</li>
+					<li class="bulleted">Provide all data held for each sensor</li>
+					<li class="bulleted">Provide API shortcuts for each sensor data point</li>
+				</ul>
+				<p>Should:</p>
+				<ul>
+					<li class="bulleted">Display the data in an easy-to-use and intuitive way</li>
+					<li class="bulleted">Offer the capability for holders to sign-in and view the status of their own sensors on the network, and add or remove sensors</li>
+					<li class="bulleted">Promote the network system and describe its applications</li>
+				</ul>
+				<p>Could:</p>
+				<ul>
+					<li class="bulleted">Display additional data analysis visually (graphically)</li>
+					<li class="bulleted">Use integration with google maps for enhanced visibility</li>
+				</ul>
+				<p>Would like:</p>
+				<ul>
+					<li class="bulleted">Accurate sensor positioning &#8211; to the nearest metre &#8211; demonstrating its position in the street</li>
+				</ul>
+				<br>
+				<h2>Context of use</h2>
+				<img src="img/greydot.png"/>
+				<p>The users of this site would primarily be companies or developers who would benefit from using the sensor network, in some way. That may be by hosting their own sensors on the network to expand the data available, using the data to improve products and services, or using the API to develop new applications. The website should strive to show the data in a clear and distinct way. It should also encourage use of the API by simplifying the process of using it.</p>
+				<p>The site will primarily be for viewing the data manually, but will also offer capabilities for monitoring the system, adding sensors, removing sensors, and other administration tasks like updating metadata.</p>
+				<br>
+				<h1>Design Mockups</h1>
+				<img src="img/greyrule.png"/>
+				<h2>Landing Page</h2>
+				<img src="img/greydot.png"/>
+				<br>
+				<img src="img/image.jpg"/>
+				<p>This homepage offers an inviting and wildly simplified experience in order to enhance the intuitive, inviting interface. The default screen immediately proposes that the user explores the network, in order to demonstrate what&#39;s available and what&#39;s achievable. The large, centralised interface matches standard conventions (a search bar with check boxes to filter results) in order to be easy to use, and the page is kept free from clutter to avoid confusing the user or overwhelming them with content. The background image subtly sets the context.</p>
+				<p>After first glance, the user will then notice the additional detail &#8211; links available in the footer for additional information, and in the header for accessing more specific parts of the site. A short, innocuous description of the system gives context, and a link invites businesses to learn more about how the system can benefit them (attracting a greater user base).</p>
+				<p>A heuristic evaluation using Nielson&#39;s principles is as follows:</p>
+				<table style="width:100%; text-align: left;">
+  					<tr>
+					    <th>Issue</th>
+					    <th>Heuristic(s)</th>	
+					    <th>F</th>
+					    <th>I</th>
+					    <th>P</th>
+					    <th>S</th>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Initial ambiguity regarding purpose of the search tool </td>
+					    <td style="text-align: left;">Help + Documentation</td>		
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">0</td>
+					    <td style = "width:20px">1</td>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Criteria for filtering the search do not convey much information regarding what exactly the return</td>
+					    <td style="text-align: left;">Help + Documentation, Match to Real World</td>		
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">1</td>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Links at the top of the page are non-descript</td>
+					    <td style="text-align: left;">Flexibility and efficiency of use, Help + documentation</td>		
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">1</td>
+					</tr>
+				</table>
+				<br>
+				<h2>Results Page</h2>
+				<img src="img/greydot.png"/>
+				<br>
+				<img src="img/image.jpg"/>
+				<p>This is an example of the page that would be loaded as a result of searching &#39;Danbury Street&#39; with the Parking and Wind criteria selected. It consists of three main panels:</p>
+				<img src="img/image.jpg"/>
+				<p><strong>Search Panel</strong></p>
+				<p>This panel is initialised to show the same criteria the search was sent with, but allows user input to update their search filters and click &#39;Refresh&#39; in order to re-run the search under the new conditions. It uses exactly the same interface as was seen on the home page &#8211; a search bar with the same 8 criteria check boxes &#8211; maintaining consistency and helping users to recognise how to use the system.  If they are comfortable with a more advanced search, a small &#39;More search tools&#39; button is provided in order to expand the  search panel and provide an expanded set of filter settings, in line with Nielson&#39;s &#39;Flexibility and Efficiency of Use&#39; heuristic. These additional filter settings were not included in the mockup, but may allow for users to search by status, nodeID, model, and more.</p>
+				<br>
+				<img src="img/image.jpg"/>
+				<p><strong>Result List</strong></p>
+				<p>This panel lists the results at the top &#8211; each individual sensor would appear once in this list &#8211; with a contextual Google Maps map embedded at the bottom. The tiles in the result list are structured as follows:</p>
+				<img src="img/image.jpg"/>
+				<p>This design style will be consistent for all results, with the graphical icons allowing for easy interpretation, quickly becoming memorable to the user. The list cards hold only the most relevant data, in order to avoid becoming too cluttered and taking up too much space. With the integration of the Maps map, it&#39;s possible to visualise node locations, and the corresponding cards display an icon indicating which node they belong to. This is all designed to aid the user in finding the precise sensor they&#39;re seeking as quickly as possible. All sensors in the list which are not currently being viewed are greyed out, and the right-arrow (indicating that the data panel is displaying that sensor&#39;s data) is highlighted grey on the selected sensor.</p>
+				<br>
+				<img src="img/image.jpg"/>
+				<p><strong>Data Panel</strong></p>
+				<p>Finally, the data panel displays all readings and metadata stored in the database for that sensorID. This is listed by table, with each field listed in order. The data have two links available to the right in each row &#8211; Copy and Link, which act as shortcuts to using the JSON API. Clicking these links will copy the direct code string into the user's clipboard so that they can easily integrate it with their projects.</p>
+				<p>Below the Table Data section is a section called History, offering a graph of readings over time. The data to be drawn on the graph is selectable through checkboxes. This is mainly for users to browse directly, and doesn't offer low-level implementation, though the option to &#39;view full history&#39; is provided if they wish to see more quantitative data.</p>
+				<p>A heuristic evaluation using Nielson's principles is as follows:</p>
+				<table style="width:100%; text-align: left;">
+  					<tr>
+					    <th>Issue</th>
+					    <th>Heuristic(s)</th>	
+					    <th>F</th>
+					    <th>I</th>
+					    <th>P</th>
+					    <th>S</th>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Overwhelming interface when unfamiliar</td>
+					    <td style="text-align: left;">Aesthetic and minimalist design</td>		
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">2</td>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Information provided on result cards is technical and low-level</td>
+					    <td style="text-align: left;">Help + Documentation, Match to Real World</td>		
+					    <td style = "width:20px">3</td>
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">2</td>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Page bears very little resemblance to previous page</td>
+					    <td style="text-align: left;">Recognition rather than recall</td>		
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">1</td>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Initially unclear that the data panel relates to the result card</td>
+					    <td style="text-align: left;">Aesthetic and minimalist design, Consistency and Standards</td>		
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">1</td>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Use of 'Copy | Link' buttons is not described</td>
+					    <td style="text-align: left;">Match between system and the real world, flexibility and efficiency of use, help + documentation</td>		
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">2</td>
+					</tr>
+					<tr>
+					    <td style="text-align: left; width:450px">Workings of the system are not explained; user has to learn what nodes are and how it's structured</td>
+					    <td style="text-align: left;">Match between system and the real world, flexibility and efficiency of use</td>		
+					    <td style = "width:20px">3</td>
+					    <td style = "width:20px">2</td>
+					    <td style = "width:20px">1</td>
+					    <td style = "width:20px">2</td>
+					</tr>
+				</table>
+				<br>
+				<h1>Summary</h1>
+				<img src="img/greyrule.png"/>
+				<p>Those users the website was tested on reported that it had an intuitive and easy-to-understand layout, but most struggled with understanding the data and what it related to. It's important to note that this system is designed for developers and those who are using the system - regular users would understand all the necessary information when using it. Upon having the system explained, all testers very quickly picked it up, and were able to recall how to find information like the node ID, or which node a given sensor belongs to.</p>
+				<p>Overall the design appears to be fairly successful, though the layout and use of screen space certainly needs some attention. Not a lot can be done about the technical information, since that is simply what the system is intended to provide; high-level representations of the data are left to the developers to create within their own apps.</p>
 			</div>
 		</div>
 
