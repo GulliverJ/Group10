@@ -1,6 +1,9 @@
 
 import java.sql.*;
 
+import database.DatabaseConnect;
+import database.SensorRaw;
+
 
 public class SensorRead {
 	
@@ -10,8 +13,7 @@ public class SensorRead {
 	
 	public SensorRead(int sensorID, String portID) {
 		this.sensorID = sensorID;
-		this.portID = portID;
-		
+		this.portID = portID;		
 	}
 	
 	/* Makes a call to the sensor at portId to gain its current readings, then updates the database */
@@ -34,7 +36,7 @@ public class SensorRead {
 		
 		do {
 			updatedResult = getReading.readResult;
-		} while(updatedResult == -3); // Loops until a reliable reading is returned by the arduino
+		} while(updatedResult == -3); // Loops until a reliable reading is returned by the arduino		
 		
 	    String sqlString = 
 		        "UPDATE sensorRaw " +
@@ -59,6 +61,8 @@ public class SensorRead {
 		/* Updates the sensor's status*/
 		updateStatus(updatedResult);
 		
+		// Update!
+		DatabaseConnect.insertSensorRaw(new SensorRaw(sensorID, updatedResult, "cm", time));
 	}
 	
 	private void updateStatus(int reading) {

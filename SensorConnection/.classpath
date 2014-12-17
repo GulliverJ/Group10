@@ -7,11 +7,8 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jre7/lib/ext/RXTXcomm.jar">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Program Files/Java/jre7/bin"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="lib/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="lib/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.34-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
