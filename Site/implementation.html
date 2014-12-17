@@ -46,7 +46,7 @@
 			<div class="content">
 				<img src="img/pocimplementation.png"/>
 				<p>Due to the resources required to develop this system in its full form, we worked with hardware and wrote software to produce a subset of the final working implementation. This acts as our proof of concept for the design, and lays the foundations for the working-scale implementation we will build in term 2 (see <a href= "term2.html">Future Plans</a>). Thus, the system we have produced prototypes the following design:</p>
-				<img src="img/image.jpg"/>
+				<img src="img/systemdesign.png"/>
 				<p>The sensor (a) in our system is modelled using an ultrasound distance finder connected to an Arduino Mega along with a Bluetooth transmitter. The node (b)  is simulated by a laptop; due to unfortunate circumstances, we were unable to use a Raspberry Pi as initially planned. The database (c) is hosted using Windows Azure services, and analytics (d) were carried out on a laptop rather than a virtual machine using an API we developed. We have documented the development of each element below, and a video demonstration of the system in operation can be found at the bottom of this page.</p>
 			</div>
 
@@ -172,7 +172,7 @@
 
 
 				<p>When considering how to store the data on the network, a relational database was the obvious answer, given the need for metadata and related tables, along with online API capabilities and the scalability that comes with it. The database created for this prototype has the following design:</p>
-				<img src="img/image.jpg" meta="db design"/>
+				<img src="img/dbdesign.png"/>
 				<div class="tileindent">
 					<p><strong>sensorMeta</strong> is the table holding the main identification information for each sensor, along with metadata such as its location. Every field except 'status' will be filled once when the sensor is first added to the system, and never changed.</p>
 					<p><strong>nodes</strong> holds all metadata about the nodes on the system</p>
@@ -188,7 +188,7 @@
 					<p><strong>sensorID</strong></p>
 					<p>Each sensor on the network should be accessible directly, and entered as a row in a meta data table. Consequently, a unique ID is required for each. Whilst the prototype we have developed for this proof of concept does not implement the standard, a proposed convention is as follows:</p>
 				</div>
-				<img src="img/image.jpg" meta="sensorID convention"/>
+				<img src="img/sensorIDdesign.png"/>
 				<div class="tileindent">
 					<p><strong>measures</strong></p>
 					<p>This field describes the application the sensor is used for. In our PoC example, we have described ours with "Parking". Other "measures" types may include "pollution", “heat”, or "wind speed". This will be necessary for filtering which sensors will be used for particular high-level applications.</p>
@@ -217,15 +217,13 @@
 				<h2>Uploading to the Database</h2>
 				<img src="img/greydot.png"/>
 				<p>The database we used was hosted through Microsoft Azure, who have provided their own library for connections in Java. Sending data to the database was a simple case of forming this connection and submitting a query. This query was dynamically built using variables - for instance, to update the sensor data reading, we used the code:</p>
-				<div class="code">
-					<h3>Code showing query sending</h3>
-				</div>
+				<img src="img/sqlString.png"/>
 				<p>This system was initially implemented within the methods in SensorRead, but ideally would be built using an API offering get/set methods for the database. This API was developed after the initial prototype, and is detailed in the next section.</p>
 				<br>
 				<h2>Demonstration</h2>
 				<img src="img/greydot.png"/>
 				<p>This video demonstrates the proof of concept system taking a reading from the ultrasound sensor and sending it to the Azure database.</p>
-				<iframe max-width="680" width="100%" height="382" src="http://www.youtube.com/embed/fpkv4w_2r54?rel=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+				<iframe max-width="680" width="100%" height="382" src="http://www.youtube.com/embed/gvK1C2W4i8E?rel=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
 				<br>
 				<br>
 				<img src="img/greyrule.png"/>
