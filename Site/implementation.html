@@ -18,23 +18,23 @@
 		<div class="panel">
 			<div class="nav">
 				<ul class="navbar">
-					<li><a = href="index.html">HOME</a></li>
-					<li><a = href="mgmt.html">PROJECT MANAGEMENT</a></li>
+					<li><a class="sidebar" href="index.html">HOME</a></li>
+					<li><a class="sidebar" href="mgmt.html">PROJECT MANAGEMENT</a></li>
 					<br>
 					<img src="img/navdivide.png"></img>
 					<br>
 					<br>
-					<li><a = href="background.html">BACKGROUND</a></li>
-					<li><a = href="requirements.html">REQUIREMENTS</a></li>
-					<li><a = href="research.html">RESEARCH</a></li>
+					<li><a class="sidebar" href="background.html">BACKGROUND</a></li>
+					<li><a class="sidebar" href="requirements.html">REQUIREMENTS</a></li>
+					<li><a class="sidebar" href="research.html">RESEARCH</a></li>
 					<br>
 					<img src="img/navdivide.png"></img>
 					<br>
 					<br>
-					<li><a = href="design.html">DESIGN</a></li>
-					<li><a = href="implementation.html" class="disabled">IMPLEMENTATION</a></li>
-					<li><a = href="testing.html">TESTING</a></li>
-					<li><a = href="term2.html">FUTURE PLANS</a></li>
+					<li><a class="sidebar" href="design.html">DESIGN</a></li>
+					<li><a class="sidebar" href="implementation.html" class="disabled">IMPLEMENTATION</a></li>
+					<li><a class="sidebar" href="testing.html">TESTING</a></li>
+					<li><a class="sidebar" href="term2.html">FUTURE PLANS</a></li>
 			</ul>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 
 			<div class="content">
 				<h1>Proof of Concept Implementation (TODO: HEADER IMAGE)</h1>
-				<p>Due to the resources required to develop this system in its full form, we worked with hardware and wrote software to produce a subset of the final working implementation. This acts as our proof of concept for the design, and lays the foundations for the working-scale implementation we will build in term 2 (see <a = href"term2.html">Future Plans</a>). Thus, the system we have produced prototypes the following design:</p>
+				<p>Due to the resources required to develop this system in its full form, we worked with hardware and wrote software to produce a subset of the final working implementation. This acts as our proof of concept for the design, and lays the foundations for the working-scale implementation we will build in term 2 (see <a href= "term2.html">Future Plans</a>). Thus, the system we have produced prototypes the following design:</p>
 				<img src="img/image.jpg"/>
 				<p>The sensor (a) in our system is modelled using an ultrasound distance finder connected to an Arduino Mega along with a Bluetooth transmitter. The node (b)  is simulated by a laptop; due to unfortunate circumstances, we were unable to use a Raspberry Pi as initially planned. The database (c) is hosted using Windows Azure services, and analytics (d) were carried out on a laptop rather than a virtual machine using an API we developed. We have documented the development of each element below, and a video demonstration of the system in operation can be found at the bottom of this page.</p>
 			</div>
@@ -158,7 +158,7 @@
 				<h1>Java code modelling road-side node</h1>
 				<img src="img/greyrule.png"/>
 				<p>The communication between the sensor and the database is handled using Java. In our original plan, this prototype was intended to be developed using a Raspberry Pi, but issues sourcing the components meant that simply running the code on a laptop was necessary. The initial development of this code, without use of the API (which was built later and is detailed below), consisted of 4 primary classes:</p>
-				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+				<div class="tileindent">
 					<p><strong>SerialRead</strong> is the lowest-level class, and uses the library rxtxcomm.jar to communicate with the serial port on the Arduino. It first opens a connection with a BufferedReader for input and an OutputStream for sending a request. It takes a port name as a parameter, and opens a connection to that port, pinging it with a byte as a request and then reading a line into its BufferedReader. This is a string, which is then converted to an Integer.</p>
 					<p><p><strong>SensorRead</strong> uses <strong>SerialRead</strong> to make a connection to a named sensor and then upload the data to the database. It takes the sensor’s ID number and string description of its associated port as parameters, and makes updates accordingly. Any given node will have one SensorRead object for each of the sensors it is connected to.</p>
 					<p><strong>DatabaseConnect</strong> establishes a connection to the Azure SQL database and contains methods for submitting queries. Both <strong>SensorRead</strong> and <strong>NodeMain</strong> use its methods to submit UPDATE queries.</p>
@@ -173,7 +173,7 @@
 
 				<p>When considering how to store the data on the network, a relational database was the obvious answer, given the need for metadata and related tables, along with online API capabilities and the scalability that comes with it. The database created for this prototype has the following design:</p>
 				<img src="img/image.jpg" meta="db design"/>
-				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+				<div class="tileindent">
 					<p><strong>sensorMeta</strong> is the table holding the main identification information for each sensor, along with metadata such as its location. Every field except ‘status’ will be filled once when the sensor is first added to the system, and never changed.</p>
 					<p><strong>nodes</strong> holds all metadata about the nodes on the system</p>
 					<p><strong>sensorRaw</strong> is updated with the sensor’s reading and an associated timestamp by the node</p>
@@ -184,14 +184,12 @@
 				<h2>Design Approach</h2>
 				<img src="img/greydot.png"/>
 				<p>The design of the database had to be carried out with multiple considerations in mind, such that sufficient information could be stored for anyone wishing to use the database – whether it be developers, researchers, or maintenance administrators. The following gives some insight into the design decisions and justification behind elements of the database design, looking specifically at the <strong>sensorMeta</strong> table.</p>
-				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
-					<p><strong>sensorID</strong></p>
-					<p>Each sensor on the network should be accessible directly, and entered as a row in a meta data table. Consequently, a unique ID is required for each. Whilst the prototype we have developed for this proof of concept does not implement the standard, a proposed convention is as follows:</p>
+				<div class="tileindent">
 					<p><strong>sensorID</strong></p>
 					<p>Each sensor on the network should be accessible directly, and entered as a row in a meta data table. Consequently, a unique ID is required for each. Whilst the prototype we have developed for this proof of concept does not implement the standard, a proposed convention is as follows:</p>
 				</div>
 				<img src="img/image.jpg" meta="sensorID convention"/>
-				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+				<div class="tileindent">
 					<p><strong>measures</strong></p>
 					<p>This field describes the application the sensor is used for. In our PoC example, we have described ours with “Parking”. Other “measures” types may include “pollution”, “heat”, or “wind speed”. This will be necessary for filtering which sensors will be used for particular high-level applications.</p>
 					<p><strong>type</strong></p>
@@ -207,10 +205,10 @@
 				<h2>Analytics</h2>
 				<img src="img/greydot.png"/>
 				<p>The table &#8220;parking&#8221; is designed to store processed data from parking sensors. This exists in order to simplify and expand the API that we might be offering to developers. For instance, simply offering them access to the raw reading data, along with sensor positions, means that if they wanted to implement a function which allowed them to find the nearest available parking space, they would have to write their own code. Instead, we can carry out the analysis on a virtual machine, and keep tables like this updated with more directly usable information for developers. In some cases it may be highly necessary to provide this analysed data since there would be no reliable way to interpret it alone &#8211; for instance, testing the distance range within which a car is determined to be covering a sensor, thus occupying a space. We have designed some example fields:</p>
-				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+				<div class="tileindent">
 					<p><strong>occupied</strong></p>
 					<p>Indicates whether or not the parking bay is occupied</p>
-					<p><strong>stateDureation</strong></p>
+					<p><strong>stateDuration</strong></p>
 					<p>Uses timestamp data to report the length of time the parking bay has been in this state (i.e. how long the currently parked car has been parked there for)</p>
 					<p><strong>legallyParked</strong></p>
 					<p>Uses road data along with the timestamp and checks these against a separate database containing the parking restriction details for that road. For instance, if a parking space is only available for 1 hour at a time between 9am and 5pm, and a car is determined to have been parked for 2 hours within those times, this could be flagged to either (or both) the car owner or the local traffic warden via a smartphone app.</p>
