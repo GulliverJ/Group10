@@ -119,9 +119,9 @@
 				<h1>Arduino package, modelling a roadside sensor</h1>
 				<img src="img/greyrule.png"/>
 				<p>The sensor hardware used here is not fully representative of what might be implemented in term 2, due to the unreliability of ultrasound distance finders being used in this context. Nonetheless, the system remains the same – the node will read in data from a sensor and transmit this via Bluetooth to its parent node (a nearby wifi-enabled processor to send the data to a database).</p>
-				<p>The code for the Arduino has a mostly empty loop, with a ‘serialEvent()’ function waiting to read input from the node – a request for information. The sensor will therefore take a reading if and only if a request is made to it. Consequently, the sensor will spend most of its time asleep, conserving battery life that would otherwise be spent repeatedly polling it every few milliseconds.</p>
+				<p>The code for the Arduino has a mostly empty loop, with a 'serialEvent()' function waiting to read input from the node - a request for information. The sensor will therefore take a reading if and only if a request is made to it. Consequently, the sensor will spend most of its time asleep, conserving battery life that would otherwise be spent repeatedly polling it every few milliseconds.</p>
 				<p>Additionally, when preparing data, the code takes the average of 100 readings from the sensor in order to maximise the reliability of the response. This is particularly important since the next update could potentially not occur for a number of minutes.</p>
-				<p>The data in this case is an integer value representing the distance, in centimetres, between the ultrasonic sensor and the next object in its line of sight. Processing on the raw reading (in order to convert it into a centimetre value) is carried out within the Arduino’s code, as detailed in the above section. Once the data is received by the main loop, it is printed through the serial port (between the Bluetooth transmitter on the sensor and the receiver in the node (or, in this case, laptop)).</p>
+				<p>The data in this case is an integer value representing the distance, in centimetres, between the ultrasonic sensor and the next object in its line of sight. Processing on the raw reading (in order to convert it into a centimetre value) is carried out within the Arduino's code, as detailed in the above section. Once the data is received by the main loop, it is printed through the serial port (between the Bluetooth transmitter on the sensor and the receiver in the node (or, in this case, laptop)).</p>
 				<div class="code">
 					<h3>const int pingPin = 22;</h3>
 					<h3>byte byteRead = 3;</h3>
@@ -160,9 +160,9 @@
 				<p>The communication between the sensor and the database is handled using Java. In our original plan, this prototype was intended to be developed using a Raspberry Pi, but issues sourcing the components meant that simply running the code on a laptop was necessary. The initial development of this code, without use of the API (which was built later and is detailed below), consisted of 4 primary classes:</p>
 				<div class="tileindent">
 					<p><strong>SerialRead</strong> is the lowest-level class, and uses the library rxtxcomm.jar to communicate with the serial port on the Arduino. It first opens a connection with a BufferedReader for input and an OutputStream for sending a request. It takes a port name as a parameter, and opens a connection to that port, pinging it with a byte as a request and then reading a line into its BufferedReader. This is a string, which is then converted to an Integer.</p>
-					<p><p><strong>SensorRead</strong> uses <strong>SerialRead</strong> to make a connection to a named sensor and then upload the data to the database. It takes the sensor’s ID number and string description of its associated port as parameters, and makes updates accordingly. Any given node will have one SensorRead object for each of the sensors it is connected to.</p>
+					<p><p><strong>SensorRead</strong> uses <strong>SerialRead</strong> to make a connection to a named sensor and then upload the data to the database. It takes the sensor's ID number and string description of its associated port as parameters, and makes updates accordingly. Any given node will have one SensorRead object for each of the sensors it is connected to.</p>
 					<p><strong>DatabaseConnect</strong> establishes a connection to the Azure SQL database and contains methods for submitting queries. Both <strong>SensorRead</strong> and <strong>NodeMain</strong> use its methods to submit UPDATE queries.</p>
-					<p><strong>NodeMain</strong> contains the main method, and loops indefinitely whilst calling to all of its children sensors for a reading update every minute. It has exactly one <strong>SensorRead</strong> object for each sensor it’s connected to, and is also responsible for reporting its operating status.</p>
+					<p><strong>NodeMain</strong> contains the main method, and loops indefinitely whilst calling to all of its children sensors for a reading update every minute. It has exactly one <strong>SensorRead</strong> object for each sensor it's connected to, and is also responsible for reporting its operating status.</p>
 				</div>
 				<img src="img/umlproto.png"/>
 				<br>
@@ -174,16 +174,16 @@
 				<p>When considering how to store the data on the network, a relational database was the obvious answer, given the need for metadata and related tables, along with online API capabilities and the scalability that comes with it. The database created for this prototype has the following design:</p>
 				<img src="img/image.jpg" meta="db design"/>
 				<div class="tileindent">
-					<p><strong>sensorMeta</strong> is the table holding the main identification information for each sensor, along with metadata such as its location. Every field except ‘status’ will be filled once when the sensor is first added to the system, and never changed.</p>
+					<p><strong>sensorMeta</strong> is the table holding the main identification information for each sensor, along with metadata such as its location. Every field except 'status' will be filled once when the sensor is first added to the system, and never changed.</p>
 					<p><strong>nodes</strong> holds all metadata about the nodes on the system</p>
-					<p><strong>sensorRaw</strong> is updated with the sensor’s reading and an associated timestamp by the node</p>
+					<p><strong>sensorRaw</strong> is updated with the sensor's reading and an associated timestamp by the node</p>
 					<p><strong>holders</strong> contains the details of every institution or entity who owns a sensor on the network.</p>
-					<p><strong>parking</strong> is an example of a post-analytics table, which stores data relating to the type of sensor application that feeds it. In this prototype, we’re using a sensor to detect a car’s presence in a parking bay. Analytics can then be run on the raw data to determine related information, such as where the nearest available parking bay is. This kind of table may be most useful to developers, who will be able to access it through an API.  In a full scale implementation, there would be a post-analytics table for each type of sensor application – such as pollution, wind speed, footfall, and more.</p>
+					<p><strong>parking</strong> is an example of a post-analytics table, which stores data relating to the type of sensor application that feeds it. In this prototype, we're using a sensor to detect a car's presence in a parking bay. Analytics can then be run on the raw data to determine related information, such as where the nearest available parking bay is. This kind of table may be most useful to developers, who will be able to access it through an API.  In a full scale implementation, there would be a post-analytics table for each type of sensor application - such as pollution, wind speed, footfall, and more.</p>
 				</div>
 
 				<h2>Design Approach</h2>
 				<img src="img/greydot.png"/>
-				<p>The design of the database had to be carried out with multiple considerations in mind, such that sufficient information could be stored for anyone wishing to use the database – whether it be developers, researchers, or maintenance administrators. The following gives some insight into the design decisions and justification behind elements of the database design, looking specifically at the <strong>sensorMeta</strong> table.</p>
+				<p>The design of the database had to be carried out with multiple considerations in mind, such that sufficient information could be stored for anyone wishing to use the database - whether it be developers, researchers, or maintenance administrators. The following gives some insight into the design decisions and justification behind elements of the database design, looking specifically at the <strong>sensorMeta</strong> table.</p>
 				<div class="tileindent">
 					<p><strong>sensorID</strong></p>
 					<p>Each sensor on the network should be accessible directly, and entered as a row in a meta data table. Consequently, a unique ID is required for each. Whilst the prototype we have developed for this proof of concept does not implement the standard, a proposed convention is as follows:</p>
@@ -191,11 +191,11 @@
 				<img src="img/image.jpg" meta="sensorID convention"/>
 				<div class="tileindent">
 					<p><strong>measures</strong></p>
-					<p>This field describes the application the sensor is used for. In our PoC example, we have described ours with “Parking”. Other “measures” types may include “pollution”, “heat”, or “wind speed”. This will be necessary for filtering which sensors will be used for particular high-level applications.</p>
+					<p>This field describes the application the sensor is used for. In our PoC example, we have described ours with "Parking". Other "measures" types may include "pollution", “heat”, or "wind speed". This will be necessary for filtering which sensors will be used for particular high-level applications.</p>
 					<p><strong>type</strong></p>
-					<p>The hardware of each sensor should also be described, for maintenance reasons primarily. The type entered for our PoC is “UltraSonic Distance Finder”, but others may include “Infrared Distance Finder” or “Accelerometer”.</p>
+					<p>The hardware of each sensor should also be described, for maintenance reasons primarily. The type entered for our PoC is "UltraSonic Distance Finder", but others may include "Infrared Distance Finder" or "Accelerometer".</p>
 					<p><strong>model</strong></p>
-					<p>Further to the type, it may be necessary to find the model number so that references to specifications can be made. Our example holds “SRF05”.</p>
+					<p>Further to the type, it may be necessary to find the model number so that references to specifications can be made. Our example holds "SRF05".</p>
 					<p><strong>added</strong></p>
 					<p>The date the sensor was added to the network; necessary for representing the devices history and drawing conclusions.</p>
 					<p><strong>road, lat,</strong> and <strong>lng</strong></p>
@@ -216,7 +216,7 @@
 				<br>
 				<h2>Uploading to the Database</h2>
 				<img src="img/greydot.png"/>
-				<p>The database we used was hosted through Microsoft Azure, who have provided their own library for connections in Java. Sending data to the database was a simple case of forming this connection and submitting a query. This query was dynamically built using variables – for instance, to update the sensor data reading, we used the code:</p>
+				<p>The database we used was hosted through Microsoft Azure, who have provided their own library for connections in Java. Sending data to the database was a simple case of forming this connection and submitting a query. This query was dynamically built using variables - for instance, to update the sensor data reading, we used the code:</p>
 				<div class="code">
 					<h3>Code showing query sending</h3>
 				</div>
