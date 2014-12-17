@@ -154,9 +154,22 @@
 					<h3><pre>  cm = microsecondsToCentimeters(duration);</h3>
 					<h3>}</h3>
 				</div>
-				
-				<h2>Laptop modelling road-side node</h2>
+				<br>
+				<h2>Java code modelling road-side node</h2>
 				<img src="img/greydot.png"/>
+				<p>The communication between the sensor and the database is handled using Java. In our original plan, this prototype was intended to be developed using a Raspberry Pi, but issues sourcing the components meant that simply running the code on a laptop was necessary. The initial development of this code, without use of the API (which was built later and is detailed below), consisted of 4 primary classes:</p>
+				<ul>
+					<li><strong>SerialRead</strong> is the lowest-level class, and uses the library rxtxcomm.jar to communicate with the serial port on the Arduino. It first opens a connection with a BufferedReader for input and an OutputStream for sending a request. It takes a port name as a parameter, and opens a connection to that port, pinging it with a byte as a request and then reading a line into its BufferedReader. This is a string, which is then converted to an Integer.</li>
+					<li><p><strong>SensorRead</strong> uses <strong>SerialRead</strong> to make a connection to a named sensor and then upload the data to the database. It takes the sensor’s ID number and string description of its associated port as parameters, and makes updates accordingly. Any given node will have one SensorRead object for each of the sensors it is connected to.</li>
+					<li><strong>DatabaseConnect</strong> establishes a connection to the Azure SQL database and contains methods for submitting queries. Both <strong>SensorRead</strong> and <strong>NodeMain</strong> use its methods to submit UPDATE queries.</li>
+					<br>
+					<li><strong>NodeMain</strong> contains the main method, and loops indefinitely whilst calling to all of its children sensors for a reading update every minute. It has exactly one <strong>SensorRead</strong> object for each sensor it’s connected to, and is also responsible for reporting its operating status.</li>
+				</ul>
+				<img src="img/image.jpg" meta="UML Diagram"/>
+				<br>
+				<h2>Building the SQL Database</h2>
+				<img src="img/greydot.png"/>
+				<p>Database Stuff</p>
 			</div>
 
 			<div class="content">
