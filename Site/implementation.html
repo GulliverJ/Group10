@@ -158,13 +158,12 @@
 				<h1>Java code modelling road-side node</h1>
 				<img src="img/greyrule.png"/>
 				<p>The communication between the sensor and the database is handled using Java. In our original plan, this prototype was intended to be developed using a Raspberry Pi, but issues sourcing the components meant that simply running the code on a laptop was necessary. The initial development of this code, without use of the API (which was built later and is detailed below), consisted of 4 primary classes:</p>
-				<ul>
-					<li><strong>SerialRead</strong> is the lowest-level class, and uses the library rxtxcomm.jar to communicate with the serial port on the Arduino. It first opens a connection with a BufferedReader for input and an OutputStream for sending a request. It takes a port name as a parameter, and opens a connection to that port, pinging it with a byte as a request and then reading a line into its BufferedReader. This is a string, which is then converted to an Integer.</li>
-					<li><p><strong>SensorRead</strong> uses <strong>SerialRead</strong> to make a connection to a named sensor and then upload the data to the database. It takes the sensor’s ID number and string description of its associated port as parameters, and makes updates accordingly. Any given node will have one SensorRead object for each of the sensors it is connected to.</li>
-					<li><strong>DatabaseConnect</strong> establishes a connection to the Azure SQL database and contains methods for submitting queries. Both <strong>SensorRead</strong> and <strong>NodeMain</strong> use its methods to submit UPDATE queries.</li>
-					<br>
-					<li><strong>NodeMain</strong> contains the main method, and loops indefinitely whilst calling to all of its children sensors for a reading update every minute. It has exactly one <strong>SensorRead</strong> object for each sensor it’s connected to, and is also responsible for reporting its operating status.</li>
-				</ul>
+				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+					<p><strong>SerialRead</strong> is the lowest-level class, and uses the library rxtxcomm.jar to communicate with the serial port on the Arduino. It first opens a connection with a BufferedReader for input and an OutputStream for sending a request. It takes a port name as a parameter, and opens a connection to that port, pinging it with a byte as a request and then reading a line into its BufferedReader. This is a string, which is then converted to an Integer.</p>
+					<p><p><strong>SensorRead</strong> uses <strong>SerialRead</strong> to make a connection to a named sensor and then upload the data to the database. It takes the sensor’s ID number and string description of its associated port as parameters, and makes updates accordingly. Any given node will have one SensorRead object for each of the sensors it is connected to.</p>
+					<p><strong>DatabaseConnect</strong> establishes a connection to the Azure SQL database and contains methods for submitting queries. Both <strong>SensorRead</strong> and <strong>NodeMain</strong> use its methods to submit UPDATE queries.</p>
+					<p><strong>NodeMain</strong> contains the main method, and loops indefinitely whilst calling to all of its children sensors for a reading update every minute. It has exactly one <strong>SensorRead</strong> object for each sensor it’s connected to, and is also responsible for reporting its operating status.</p>
+				</div>
 				<img src="img/image.jpg" meta="UML Diagram"/>
 				<br>
 				<h1>Building the SQL Database</h1>
@@ -174,40 +173,48 @@
 
 				<p>When considering how to store the data on the network, a relational database was the obvious answer, given the need for metadata and related tables, along with online API capabilities and the scalability that comes with it. The database created for this prototype has the following design:</p>
 				<img src="img/image.jpg" meta="db design"/>
-				<p><strong>sensorMeta</strong> is the table holding the main identification information for each sensor, along with metadata such as its location. Every field except ‘status’ will be filled once when the sensor is first added to the system, and never changed.</p>
-				<p><strong>nodes</strong> holds all metadata about the nodes on the system</p>
-				<p><strong>sensorRaw</strong> is updated with the sensor’s reading and an associated timestamp by the node</p>
-				<p><strong>holders</strong> contains the details of every institution or entity who owns a sensor on the network.</p>
-				<p><strong>parking</strong> is an example of a post-analytics table, which stores data relating to the type of sensor application that feeds it. In this prototype, we’re using a sensor to detect a car’s presence in a parking bay. Analytics can then be run on the raw data to determine related information, such as where the nearest available parking bay is. This kind of table may be most useful to developers, who will be able to access it through an API.  In a full scale implementation, there would be a post-analytics table for each type of sensor application – such as pollution, wind speed, footfall, and more.</p>
+				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+					<p><strong>sensorMeta</strong> is the table holding the main identification information for each sensor, along with metadata such as its location. Every field except ‘status’ will be filled once when the sensor is first added to the system, and never changed.</p>
+					<p><strong>nodes</strong> holds all metadata about the nodes on the system</p>
+					<p><strong>sensorRaw</strong> is updated with the sensor’s reading and an associated timestamp by the node</p>
+					<p><strong>holders</strong> contains the details of every institution or entity who owns a sensor on the network.</p>
+					<p><strong>parking</strong> is an example of a post-analytics table, which stores data relating to the type of sensor application that feeds it. In this prototype, we’re using a sensor to detect a car’s presence in a parking bay. Analytics can then be run on the raw data to determine related information, such as where the nearest available parking bay is. This kind of table may be most useful to developers, who will be able to access it through an API.  In a full scale implementation, there would be a post-analytics table for each type of sensor application – such as pollution, wind speed, footfall, and more.</p>
+				</div>
 
 				<h2>Design Approach</h2>
 				<img src="img/greydot.png"/>
 				<p>The design of the database had to be carried out with multiple considerations in mind, such that sufficient information could be stored for anyone wishing to use the database – whether it be developers, researchers, or maintenance administrators. The following gives some insight into the design decisions and justification behind elements of the database design, looking specifically at the <strong>sensorMeta</strong> table.</p>
-				<p><strong>sensorID</strong></p>
-				<p>Each sensor on the network should be accessible directly, and entered as a row in a meta data table. Consequently, a unique ID is required for each. Whilst the prototype we have developed for this proof of concept does not implement the standard, a proposed convention is as follows:</p>
-				<p><strong>sensorID</strong></p>
-				<p>Each sensor on the network should be accessible directly, and entered as a row in a meta data table. Consequently, a unique ID is required for each. Whilst the prototype we have developed for this proof of concept does not implement the standard, a proposed convention is as follows:</p>
+				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+					<p><strong>sensorID</strong></p>
+					<p>Each sensor on the network should be accessible directly, and entered as a row in a meta data table. Consequently, a unique ID is required for each. Whilst the prototype we have developed for this proof of concept does not implement the standard, a proposed convention is as follows:</p>
+					<p><strong>sensorID</strong></p>
+					<p>Each sensor on the network should be accessible directly, and entered as a row in a meta data table. Consequently, a unique ID is required for each. Whilst the prototype we have developed for this proof of concept does not implement the standard, a proposed convention is as follows:</p>
+				</div>
 				<img src="img/image.jpg" meta="sensorID convention"/>
-				<p><strong>measures</strong></p>
-				<p>This field describes the application the sensor is used for. In our PoC example, we have described ours with “Parking”. Other “measures” types may include “pollution”, “heat”, or “wind speed”. This will be necessary for filtering which sensors will be used for particular high-level applications.</p>
-				<p><strong>type</strong></p>
-				<p>The hardware of each sensor should also be described, for maintenance reasons primarily. The type entered for our PoC is “UltraSonic Distance Finder”, but others may include “Infrared Distance Finder” or “Accelerometer”.</p>
-				<p><strong>model</strong></p>
-				<p>Further to the type, it may be necessary to find the model number so that references to specifications can be made. Our example holds “SRF05”.</p>
-				<p><strong>added</strong></p>
-				<p>The date the sensor was added to the network; necessary for representing the devices history and drawing conclusions.</p>
-				<p><strong>road, lat,</strong> and <strong>lng</strong></p>
-				<p>Position data, critical for location-based searches and applications involving geographical analysis.</p>
+				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+					<p><strong>measures</strong></p>
+					<p>This field describes the application the sensor is used for. In our PoC example, we have described ours with “Parking”. Other “measures” types may include “pollution”, “heat”, or “wind speed”. This will be necessary for filtering which sensors will be used for particular high-level applications.</p>
+					<p><strong>type</strong></p>
+					<p>The hardware of each sensor should also be described, for maintenance reasons primarily. The type entered for our PoC is “UltraSonic Distance Finder”, but others may include “Infrared Distance Finder” or “Accelerometer”.</p>
+					<p><strong>model</strong></p>
+					<p>Further to the type, it may be necessary to find the model number so that references to specifications can be made. Our example holds “SRF05”.</p>
+					<p><strong>added</strong></p>
+					<p>The date the sensor was added to the network; necessary for representing the devices history and drawing conclusions.</p>
+					<p><strong>road, lat,</strong> and <strong>lng</strong></p>
+					<p>Position data, critical for location-based searches and applications involving geographical analysis.</p>
+				</div>
 				<br>
 				<h2>Analytics</h2>
 				<img src="img/greydot.png"/>
 				<p>The table &#8220;parking&#8221; is designed to store processed data from parking sensors. This exists in order to simplify and expand the API that we might be offering to developers. For instance, simply offering them access to the raw reading data, along with sensor positions, means that if they wanted to implement a function which allowed them to find the nearest available parking space, they would have to write their own code. Instead, we can carry out the analysis on a virtual machine, and keep tables like this updated with more directly usable information for developers. In some cases it may be highly necessary to provide this analysed data since there would be no reliable way to interpret it alone &#8211; for instance, testing the distance range within which a car is determined to be covering a sensor, thus occupying a space. We have designed some example fields:</p>
-				<p><strong>occupied</strong></p>
-				<p>Indicates whether or not the parking bay is occupied</p>
-				<p><strong>stateDureation</strong></p>
-				<p>Uses timestamp data to report the length of time the parking bay has been in this state (i.e. how long the currently parked car has been parked there for)</p>
-				<p><strong>legallyParked</strong></p>
-				<p>Uses road data along with the timestamp and checks these against a separate database containing the parking restriction details for that road. For instance, if a parking space is only available for 1 hour at a time between 9am and 5pm, and a car is determined to have been parked for 2 hours within those times, this could be flagged to either (or both) the car owner or the local traffic warden via a smartphone app.</p>
+				<div style="margin-left: 20px; padding-left:28px; padding-right: 28px; border-left-width: 1px; border-left-style: solid;">
+					<p><strong>occupied</strong></p>
+					<p>Indicates whether or not the parking bay is occupied</p>
+					<p><strong>stateDureation</strong></p>
+					<p>Uses timestamp data to report the length of time the parking bay has been in this state (i.e. how long the currently parked car has been parked there for)</p>
+					<p><strong>legallyParked</strong></p>
+					<p>Uses road data along with the timestamp and checks these against a separate database containing the parking restriction details for that road. For instance, if a parking space is only available for 1 hour at a time between 9am and 5pm, and a car is determined to have been parked for 2 hours within those times, this could be flagged to either (or both) the car owner or the local traffic warden via a smartphone app.</p>
+				</div>
 				<br>
 				<h2>Uploading to the Database</h2>
 				<img src="img/greydot.png"/>
