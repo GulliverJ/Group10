@@ -248,8 +248,50 @@
 
 			<div class="content">
 				<img src="img/apiproto.png"/>
-				<p>This section will contain details about the development of the API and how it was used in analytics to fill the parking table of the database</p>
-				<p>Assigned to: <strong>Victoria</strong></p>
+				<p>This section will contain details about the development of the API and how it was used in analytics to fill the parking table of the database.</p>
+				<p>Extending from the creation of the Azure SQL database, and the classes created to model a sensor of a larger network transmitting data across Bluetooth and updating its' raw values to the cloud (tables: dbo.sensorRaw && dbo.sensorMeta), an API was created in order to model:</p>
+				<ul>
+					<li class="bulleted">How users of the database might be granted access to the database’s raw information via getter and setter methods </li>
+					<li class="bulleted">How data analytics could potentially be applied to this raw information to update other tables (dbo.parking) with meaningful information in the cloud which users can then access</li>
+				</ul>
+				<p>The API provides a sub-set of potential functionality for the specific use case of 'parking/ illegal parking'. It should be noted that, the API created is not fully representative of the implementation we plan to build next term, which will make use of the RESTful architecture style to create a web service which users can then make use of. Hence, it would be more accurate to view this prototype as an experimentation to create an interface between a client (user) and server (database). </p>
+				<p>The API can be viewed as a mock-up displaying:</p>
+				<ul>
+					<li class="bulleted">Connecting to the database </li>
+					<li class="bulleted">Retrieving data from it</li>
+					<li class="bulleted">Performing analytics if necessary</li>
+					<li class="bulleted">Feeding data back into the database</li>
+				</ul>
+				<p>To connect to the remote SQL database using Java, the Microsoft JDBC driver, which enables the handling of its data directly, was used. Ideally, in terms of API design, we do not want to expose too much of the inner workings of the code nor unnecessarily clutter users with implementation details they do not really need to know. For this reason, the connection string, method to connect to the database in general and method to execute SQL instructions to be performed are kept private. A range of public static methods, however, are available in the DatabaseConnect class for use. </p>
+				<p>These include: </p>
+				<p><strong>List&#60SensorRaw&#62  getSensorRaw() </strong></p>
+				<ul>
+					<li class="bulleted">Which users can use to query the database's sensorRaw table and retrieve a set of results from. In the implementation of this, the set of results comprises of the entire table as available on the cloud. Each row of the table is then treated as a <strong> sensorRaw object</strong> with each column in the row filling out the member variables e.g. sensorID of said object.  </li>
+					<li class="bulleted">Designing data retrieval in this method means that users do not have to constantly make calls/ open a connection to the database on the cloud and instead may store a local copy of an entire table in their IDE if they wish.</li>
+				</ul>
+				<p>A range of getter methods can then be used to retrieve data from a specified row such as:</p>
+				<p><strong>GetSensorID()</strong> - returns sensorID of the specified row</p>
+				<p><strong>getReadingFloat()</strong> - returns the latest reading of the sensor in question</p>
+				<p><strong>*NOTE: </strong>Due to the experimentation of implementing some data analytics, this is no longer the case, <strong>getSensorRaw() </strong> reads from table sensorRaw2 instead of sensorRaw but in general terms, the functionality of such a method is stated above. For more information on this, see the discussion of data analytics below.</p>
+				<p><strong>getUnit()</strong> - mostly for viewing purposes only, returns in string, the unit that the original reading float, in this case, cm was converted to</p>
+				<p><strong>getLastUpdate()</strong> - gets the timestamp for the last time the specified sensor was updated</p>
+				<p><strong>String toString()</strong> - returns all raw data stored in that row about a specific sensor as a string</p>
+				<p>Generally working in the same method as the above:</p>
+				<p><strong>List&#60Parking&#62 getParkingList()</strong></p>
+				<p>Associated class with getters/ setters: Parking.java</p>
+				<p><strong>List&#60SensorMeta&#62 getSensorMetaList()</strong></p>
+				<p>Associated class with getters/setters: SensorMeta.java</p>
+				<p><h1>Data Analytics</h1></p>
+				<p>For the purposes of generating some analytics through API which could then be used to populate the parking table which deals with processed data, a pseudo-table 'SensorRaw2' was designed to store the raw readings of a sensor every time it updated.</p>
+				<p>At present, the current configuration is as follows:</p>
+				<img src="img/apitable.png"/>
+				<p>The main difference between the two tables can be simply defined as: where sensorRaw discards its previous data every time a new reading update is made, sensorRaw2 does not update a sensor's corresponding/ existing fields and instead adds a new entry to the table with the same sensorID and different timestamp. Dbo.sensorRaw2 thus makes use of two primary keys to generate unique entries: sensorID and lastUpdate. </p>
+				<p>Ideally, sensorRaw and sensorRaw2 would belong to different databases in the actual implementation. sensorRaw2 would be part of a local database rather than the one on the cloud for instance, and push its calculations to the cloud and the parking table. </p>
+				<p>By making use of the data available in table sensorRaw2, accessed through the two DatabaseConnect methods <strong>getSensorRawList()</strong> and it's overloading method <strong>getSensorRawList(Timestamp from)</strong> conclusions were made on whether 1. A space was occupied or not and 2. The duration of stay of a particular vehicle. </p>
+				<p><strong>updateParking()</strong> witnessed in ParkingAnalytics.java,  makes use of the readingFloat and lastUpdate(timeStamp) fields stored and provided by the sensorRaw2 table. Based upon this, a spot is determined to be occupied if the readingFloat is between 0 and 200, suggesting the presence of an object within the range of the ultrasound sensor used in the hardware prototype implementation for this proof of concept. Following this, if the value is taken 'updated' again and within the next half-minute and it is seen that there are very miniscule changes in the reading which is still in range - an assumption is made that the object is indeed stationary and that a vehicle has therefore been parked else a false flag is activated and the state 'occupied = true' is returned to false. From this point, the duration of stay is timed based on the time stamp. </p>
+				<p>These two pieces of data were successfully fed back into the parking data base on the cloud for the 'occupied' and 'occupiedStateDuration' respectively. </p>
+				<p><u>This code can be found on the git repos. Under the database package.</u></p>
+				<p>NOTE 2: To test the functionality of the API above: whether it was indeed connecting to the database and retrieving the correct data, small snippets of code were created to print out the values stored in the remote database. These can be seen commented out at the bottom of DatabaseConnect.java </p>
 			</div>
 
 			<div class="contentlast">
