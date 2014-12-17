@@ -42,16 +42,27 @@
 		<div class="main">
 			<div class="contentlast">
 				<img src="img/term2.png"/>
-				<p>This section will contain details about what we're planning for term 2.</p>
-				<p>Assigned to: <strong>All</strong></p>
+				
 				<p><h1>Creating the Hardware<h1></p>
 				<p>Now that we have our prototype, it is time to take it to the next level. Currently we only have one node of the system and we are using a computer as our zone controller.
 				In our next term we want to create multiple nodes and start designing the sensor network. This will require code responsible for sending info from node to node and not just from node to zone controller.
-				We also need to create the actual zone controller to replace having a computer nearby.</p>
+				We also need to create the actual zone controller node to replace having a computer nearby.</p>
+				<h2>Testing Approaches to Implementation</h2>
 				<p>We need to make some final decisions on the specific hardware we are going to use. The Arduino will work in the smaller scale, but we may find that it is not ideal for larger networks. 
 				The RaspBerry Pi could work as our zone controller, but again its a matter of testing these things out and seeing if they are the optimal devices to use.
-				We also need to decide on wether or not to use ZigBee. Looking at the kind of system we have created, it does seem to be the best suited device.
-				Lastly we need to decide on the kind of sensor to use. Currently we will most likely use Infrared, as it is the cheapest and easiest to implement.</p>
+				Most importnantly, we need to find the most reliable method of implementing a vehicle detection system. This will involve testing of most (if not all) of the ideas outlined in the System Design section on the website.</p>
+				<h1>Developing infrastructure software for scalability</h1>
+				<p>Once we have the hardware running, or during its production, we must also rework our network code to cope with issues of scalability (such as adding multiple sensors to a single node). In some cases, as mentioned above, a node's associated sensors may be so numerous (or perhaps widespread) that the most efficient way of communicating the data is to "piggyback" it in packets sent between sensors, before these packets are then sent to the main node. This will require a lot of testing and research, which we expect will be a large area of focus for us next term.</p>
+				<p>We also want to explore a plug-and-play architecture, allowing new sensors of various kinds to be easily integrated with the system. This may require designing a new data transfer protocol, and will need to standardise communications to some extent in order to ensure compatability.</p>
+				<h1>Building the Developer Interface</h1>
+				<p>Developers will be looking to access the system in a number of ways, and we will have to develop solutions to satisfy all of them.</p>
+				<h2>Java API for network code</h2>
+				<p>Currently in development is a low-level API for reading and updating entries in the system database. This should be finished as a priority at the start of term 2, as it will provide a critical backbone for the development of the the rest of the system.</p>
+				<h2>JSON/other web-based API for database access</h2>
+				<p>This API will allow developers of web apps and smartphone apps alike to make use of the data read by the network. We hope to demonstrate its use by producing a basic app to take the data and present the current state of nearby parking spaces.</p>
+				<h2>GUI for accessing and modifying the database</h2>
+				<p>This was explored in the <a href="design.html">Design</a> section of the website. The GUI should conform to the requirements as outlined there, and may in addition allow for users to sign up and add their own sensors/manage their own sensors through the network. We would therefore need to implement a user-friendly method of adding a new sensor node/sensor/subnetwork to the larger system, for adding all the necessary metadata upon creation and then receiving regular updates.</p>
+
 			</div>
 		</div>
 
