@@ -116,8 +116,47 @@
 
 			<div class="content">
 				<h1>System Prototyping (TODO new title image)</h1>
-				<p>This section will contain details about the implementation of the system prototype (Java code, arduino code, and the SQL database)</p>
-				<p>Assigned to: <strong>Gulliver</strong></p>
+				<h2>Arduino package, modelling a roadside sensor</h2>
+				<img src="img/greydot.png"/>
+				<p>The sensor hardware used here is not fully representative of what might be implemented in term 2, due to the unreliability of ultrasound distance finders being used in this context. Nonetheless, the system remains the same – the node will read in data from a sensor and transmit this via Bluetooth to its parent node (a nearby wifi-enabled processor to send the data to a database).</p>
+				<p>The code for the Arduino has a mostly empty loop, with a ‘serialEvent()’ function waiting to read input from the node – a request for information. The sensor will therefore take a reading if and only if a request is made to it. Consequently, the sensor will spend most of its time asleep, conserving battery life that would otherwise be spent repeatedly polling it every few milliseconds.</p>
+				<p>Additionally, when preparing data, the code takes the average of 100 readings from the sensor in order to maximise the reliability of the response. This is particularly important since the next update could potentially not occur for a number of minutes.</p>
+				<p>The data in this case is an integer value representing the distance, in centimetres, between the ultrasonic sensor and the next object in its line of sight. Processing on the raw reading (in order to convert it into a centimetre value) is carried out within the Arduino’s code, as detailed in the above section. Once the data is received by the main loop, it is printed through the serial port (between the Bluetooth transmitter on the sensor and the receiver in the node (or, in this case, laptop)).</p>
+				<div class="code">
+					<h3>const int pingPin = 22;</h3>
+					<h3>byte byteRead = 3;</h3>
+					<h3>long cm = -1;</h3>
+					<br>
+					<h3>void setup() {</h3>
+					<h3><pre>  Serial.begin(115200);</h3>
+					<h3>}</h3>
+					<br>
+					<h3>void loop()</h3>
+					<h3>{</h3>
+					<h3><pre>  if( cm > 0 ){</h3>
+					<h3><pre>    Serial.println(cm);</h3>
+					<h3><pre>    cm = -1;</h3>
+					<h3><pre>  }</h3>
+					<h3>}</h3>
+					<br>
+					<h3>void serialEvent() {</h3>
+					<br>
+					<h3><pre>  byteRead = Serial.read();</h3>
+					<h3><pre>  long duration = 0;</h3>
+					<br>
+					<h3><pre>  for(int i = 0; i < 100; i++) {</h3>
+					<h3><pre>    /* Read measurement from sensor */</h3>
+					<h3><pre>    duration += pulseIn(pingPin, HIGH);</h3>
+					<h3><pre>  }</h3>
+					<br>
+					<h3><pre>  duration = duration/100;</h3>
+					<br>
+					<h3><pre>  cm = microsecondsToCentimeters(duration);</h3>
+					<h3>}</h3>
+				</div>
+				
+				<h2>Laptop modelling road-side node</h2>
+				<img src="img/greydot.png"/>
 			</div>
 
 			<div class="content">
