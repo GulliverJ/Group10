@@ -41,7 +41,28 @@
 
 		<div class="main">
 			<div class="content">
-			<p><h1>Network architecture Considerations (make into picture)</h1></p>
+				<img src="img/research.png"/>
+				<h1>Similar systems currently in use</h1>
+				<p>Existing systems which match our specification provide a valuable source for information - research carried out by those running these projects informs our decisions, and technical decisions they make can guide us and open new avenues for exploration. Here are a few examples:</p>
+
+
+
+				<h2>MIT's Senseable Cities Lab</h2>
+				<div class="tileindent">
+					<p>MIT is very active in the area of smart cities, to the extent that they have a lab dedicated to smart city research. The Copenhagen Wheel, one of their early projects, attached a myriad of sensors to a bicycle wheel hub. This hub could connect to the user's phone via Bluetooth, and transmitted environmental data as well as the user's ride-time data, allowing integration for social media, and passively building a pollution map of the urban centre by mixing pollution sensor readings with gps readings. MIT Senseable Cities is currently running numerous projects related to quantifying the urban sprawl, gathering data from public service vehicles such as taxis and buses and experimenting with sensors in motion. So far we have been considering our network to be built of in-situ, stationary sensors, but sensors in motion are a highly valid area for further research.</p>
+				</div>
+				<h2>IBM's People4SmarterCities</h2>
+				<div class="tileindent">
+					<p>People4SmarterCities is an initiative from IBM to engage citizens in the development of smart systems in their cities. It offers a platform for discussion, along with suggestions for ideas and insights, to find out what people living in cities want for themselves instead of trying to identify visibly apparent inefficiencies. This resource could be valuable for us by expanding our outlook on how our sensor network could be used, and what considerations we should make when designing it in order to allow for such flexibility.</p>
+				</div>
+				<h2>HP's Central Nervous System for Earth (CeNSE)</h2>
+				<div class="tileindent">
+					<p>Unlike the previous two examples, HP has its eyes on a larger scale system, hoping to connect worldwide sensors. The system has a strong focus on sensor accuracy, deploying thousands of sensors on structures such as the Golden Gate Bridge to measure even the slightest of movements. Driven by their cutting edge technology in hyper-sensitive accelerometers, they seek to analyse the infrastructure of the world and draw conclusions and develop new applications using it. They've investigated using accelerometers to improve the reliability of certain sensing applications - such as detecting the presence of people in a room by recognising footsteps. They also mentioned a project during a talk at the Emerging Communications conference in 2011 which could distinguish different types of water usage in a house, simply from reading the vibrations in the water main feeding the house. These exploratory applications of sensitive accelerometers should be considered later in our planning stages.</p>
+				</div>
+				<img src="img/greyrule.png"/>
+				<br>
+				<br>
+				<p><h1>Network architecture Considerations (make into picture)</h1></p>
 			<p><h1>Ways to send data</h1></p>
 			<p>There are many different ways to send data both wirelessly and wired. Through extensive research we narrowed it down to a few different ways.</p>
 			<p><h2>WiFi</h2></p>
@@ -133,25 +154,17 @@
 			<p>Depending on the use case and kind of sensor we are working with, some protocols work better than other. 
 			For our parking bay monitoring case we would use ZigBee for the wireless datatransmission, but we may decide to use wired if we use something like infrared.
 			We chose ZigBee over Bluetooth, because the range did not matter in this case and the lower power consumption is more beneficial. </p>
-			
-			</div>
-			<div class="content">
-				<img src="img/research.png"/>
-				<p>This section will contain the research findings, by section. Sections may include:</p>
-				<ul>
-					<li class="bulleted">Existing Systems - <strong>Gulliver</strong></li>
-					<li class="bulleted">Hardware</li>
-					<li class="bulleted">Software</li>
-					<li class="bulleted">Environmental (looking at physical implementation</li>
-					<li class="bulleted">Anything else... Go nuts</li>
-				</ul>
+
+				<img src="img/greyrule.png"/>
+				<br>
+				<br>
 				<p><h1>Potential sensors and their applications</h1></p>
 				<p>This section details a variety of sensors and their potential use for object detection in relation to
 				the use case of <b>'parking/illegal parking'</b>. What sensors we may use as hardware to support the use
 				case, how these would be configured in different environments, considerations and lastly, the
 				strengths and weaknesses associated with each have been documented below. </p>
 				<p><h2>Approaches:</h2></p>
-				<img src="img/greyrule.png"/>
+				
 				<p><span class="research">A</span> | Light sensors/ Photodiodes as a method of object detection</p>
 				<img src="img/greydot.png"/>
 				<p>By making use of these sensors, the general idea was to detect a 'spike' in the change of light
@@ -338,9 +351,30 @@
 				<br>
 				<p><span class="research">G</span> | A net of pressure sensors</p>
 				<img src="img/greydot.png"/>
-				<p> To be done by Gulliver </p>
+				<p>Finally, it would be possible to detect the presence of a vehicle in a parking bay by creating what is in effect a car-sized touch screen. By laying pressure sensors in key areas underneath a membrane, the exact position of the wheels could be tracked and interpreted. This means that the system could recognise cars, motorcycles, and unusually parked vehicles (such as cars with a trailer that overlaps another bay). Another big issue that this method would solve is the fact that a lot of streetside parking areas in London are not segregated into bays, but are instead extended zones. A pressure-sensor membrane lain across the length of a parking zone can accurately identify where cars are parked, and could even go as far as analysing whether an available space is large enough to fit the user's car model.</p>
+				<p>A number of configurations are possible, each with varying cost and reliability. Here are a few examples:</p>
+				<img src="img/image.jpg"/>
+				<p>Note the need for a small hub connected to the membrane. Complex analytics would need to be performed in order to reliably read a wheel's motion, and this would likely have to be dealt with in the hub; there'd be too much data to send rapidly over a network to be analysed. This would incur high energy costs, and would involve a considerable amount of system design and set-up. That said, this method does result in the highest reliability for detecting parking space occupation.</p>
 
-				
+				<p>This approach would involve the use of piezotronic pressure sensors - sensors that pass current dependent on compression. These come in a variety of load ranges, and can read up to 177.92kN of force when used alone. For this application, it may be best to use a model such as the ICP Quartz Force Ring B01B05, capable of reading up to 5kN, in multiple locations in order to sense a vehicle's wheels.</p>
+
+				<p><strong>Positives</strong></p>
+				<ul>
+					<li class="bulleted">Reliable and accurate vehicle detection</li>
+					<li class="bulleted">Recognises vehicles and obstructions of all types</li>
+					<li class="bulleted">Capabilities for extended functionality - such as detecting when a car has passengers, how many etc.</li>
+					<li class="bulleted">Not affected by weather and resistant to vandalism</li>
+					<li class="bulleted">Installing the hardware won't require specialist tools</li>
+				</ul>
+				<p><strong>Negatives</strong></p>
+				<ul>
+					<li class="bulleted">Hardware will be expensive to produce</li>
+					<li class="bulleted">Sensor hubs will be power-hungry</li>
+					<li class="bulleted">Hardware is not low-profile and very visible; may cause complaints amongst residents or road users</li>
+					<li class="bulleted">Maintenance may prove to be more expensive and complex</li>
+				</ul>
+				<p>SOURCE http://www.pcb.com/Linked_Documents/AutomotiveSensors/AUTO_RLDA_Lowres.pdf</p>
+
 			</div>
 
 			<div class="content">
@@ -488,6 +522,12 @@
 				<p><h2>Contiki OS</h2></p>
 				<p><a href="http://www.contiki-os.org/">http://www.contiki-os.org/</a><br></br>
 				This is an operating system made for sensor management. </p>
+				<h2>IBM's People4SmarterCities</h2>
+				<a href="http://people4smartercities.com/">http://people4smartercities.com/</a>
+				<h2>HP's Central Nervous System for Earth</h2>
+				<a href="http://www8.hp.com/us/en/hp-information/environment/cense.html#.VJFEryusXe8">http://www8.hp.com/us/en/hp-information/environment/cense.html#.VJFEryusXe8</a>
+				
+				
 			</div>
 		</div>
 
